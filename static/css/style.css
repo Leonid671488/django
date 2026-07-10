@@ -1,0 +1,202 @@
+/* Общие стили */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: #fcfbf7;
+    color: #2c2c2c;
+    line-height: 1.6;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Шапка сайта */
+header {
+    background-color: #ffffff;
+    padding: 15px 0;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.header-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #111;
+}
+
+.logo span {
+    color: #e65100;
+}
+
+/* Главное навигационное меню */
+.nav-menu {
+    display: flex;
+    gap: 25px;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: #555;
+    font-weight: 500;
+    font-size: 15px;
+    transition: color 0.2s ease;
+}
+
+.nav-link:hover {
+    color: #e65100;
+}
+
+.info-block {
+    text-align: right;
+}
+
+.work-time {
+    font-weight: 600;
+    color: #2e7d32;
+    background-color: #e8f5e9;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+}
+
+/* Главный баннер */
+.hero {
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.6)), url('https://unsplash.com') no-repeat center center/cover;
+    height: 50vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+    margin-bottom: 60px;
+}
+
+.hero-content h1 {
+    font-size: 44px;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+}
+
+.hero-content p {
+    font-size: 18px;
+    font-weight: 300;
+}
+
+/* Разделы меню (Сетка) */
+.menu-title {
+    text-align: center;
+    font-size: 32px;
+    margin-top: 20px;
+    margin-bottom: 40px;
+    text-transform: uppercase;
+    position: relative;
+}
+
+.menu-title::after {
+    content: '';
+    display: block;
+    width: 50px;
+    height: 3px;
+    background-color: #e65100;
+    margin: 10px auto 0;
+}
+
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 30px;
+    margin-bottom: 80px;
+}
+
+.menu-card {
+    background: #ffffff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-decoration: none;
+    color: inherit;
+}
+
+.menu-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+}
+
+.card-img {
+    height: 220px;
+    background-size: cover;
+    background-position: center;
+}
+
+.img-grill { background-image: url('/static/icons/grill.png'); }
+.img-fish { background-image: url('/static/icons/fish.png'); }
+.img-pasta { background-image: url('/static/icons/pasta.png'); }
+.img-asia { background-image: url('/static/icons/sushi.png'); }
+
+.card-info {
+    padding: 20px;
+    text-align: center;
+}
+
+.card-info h3 {
+    font-size: 20px;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    color: #111;
+}
+
+.card-info p {
+    font-size: 14px;
+    color: #666;
+}
+
+/* Подвал */
+footer {
+    background-color: #111;
+    color: #aaa;
+    padding: 40px 0;
+    text-align: center;
+    font-size: 14px;
+}
+
+footer p {
+    margin-bottom: 10px;
+}
+
+/* Адаптивность */
+@media (max-width: 900px) {
+    .header-box {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+    .nav-menu {
+        gap: 15px;
+    }
+    .info-block {
+        text-align: center;
+    }
+    .hero-content h1 {
+        font-size: 32px;
+    }
+}
