@@ -50,9 +50,9 @@
         <section id="grill-section">
             <h3 class="section-subtitle">Гриль</h3>
             {% if "Гриль" in cuisine_types %}
-                {% for restaurant in restaurants %}
-                    {% if restaurant.cuisine == "Гриль" %}
-                        <div class="restaurants-grid">
+                <div class="restaurants-grid">
+                    {% for restaurant in restaurants %}
+                        {% if restaurant.cuisine == "Гриль" %}
                             <article class="restaurant-card">
                                 <div class="restaurant-img-wrapper">
                                     <img src="{{ restaurant.image }}" alt="Ресторан" class="restaurant-img">
@@ -68,9 +68,9 @@
                                     <p class="restaurant-address">{{ restaurant.address }}</p>
                                 </div>
                             </article>
-                        </div>
-                    {% endif %}
-                {% endfor %}
+                        {% endif %}
+                    {% endfor %}
+                </div>
             {% else %}
                 <div class="no-results-box">
                     <div class="no-results-icon">
@@ -87,9 +87,9 @@
         <section id="fish-section">
             <h3 class="section-subtitle">Рыба</h3>
             {% if "Рыба" in cuisine_types %}
-                {% for restaurant in restaurants %}
-                    {% if restaurant.cuisine == "Рыба" %}
-                        <div class="restaurants-grid">
+                <div class="restaurants-grid">
+                    {% for restaurant in restaurants %}
+                        {% if restaurant.cuisine == "Рыба" %}
                             <article class="restaurant-card">
                                 <div class="restaurant-img-wrapper">
                                     <img src="{{ restaurant.image }}" alt="Ресторан" class="restaurant-img">
@@ -105,9 +105,9 @@
                                     <p class="restaurant-address">{{ restaurant.address }}</p>
                                 </div>
                             </article>
-                        </div>
-                    {% endif %}
-                {% endfor %}
+                        {% endif %}
+                    {% endfor %}
+                </div>
             {% else %}
                 <div class="no-results-box">
                     <div class="no-results-icon">
@@ -124,9 +124,9 @@
         <section id="pasta-section">
             <h3 class="section-subtitle">Паста</h3>
             {% if "Паста" in cuisine_types %}
-                {% for restaurant in restaurants %}
-                    {% if restaurant.cuisine == "Паста" %}
-                        <div class="restaurants-grid">
+                <div class="restaurants-grid">
+                    {% for restaurant in restaurants %}
+                        {% if restaurant.cuisine == "Паста" %}
                             <article class="restaurant-card">
                                 <div class="restaurant-img-wrapper">
                                     <img src="{{ restaurant.image }}" alt="Ресторан" class="restaurant-img">
@@ -142,9 +142,9 @@
                                     <p class="restaurant-address">{{ restaurant.address }}</p>
                                 </div>
                             </article>
-                        </div>
-                    {% endif %}
-                {% endfor %}
+                        {% endif %}
+                    {% endfor %}
+                </div>
             {% else %}
                 <div class="no-results-box">
                     <div class="no-results-icon">
@@ -161,9 +161,9 @@
         <section id="asia-section">
             <h3 class="section-subtitle">Азия</h3>
             {% if "Азия" in cuisine_types %}
-                {% for restaurant in restaurants %}
-                    {% if restaurant.cuisine == "Азия" %}
-                        <div class="restaurants-grid">
+                <div class="restaurants-grid">
+                    {% for restaurant in restaurants %}
+                        {% if restaurant.cuisine == "Азия" %}
                             <article class="restaurant-card">
                                 <div class="restaurant-img-wrapper">
                                     <img src="{{ restaurant.image }}" alt="Ресторан" class="restaurant-img">
@@ -179,9 +179,9 @@
                                     <p class="restaurant-address">{{ restaurant.address }}</p>
                                 </div>
                             </article>
-                        </div>
-                    {% endif %}
-                {% endfor %}
+                        {% endif %}
+                    {% endfor %}
+                </div>
             {% else %}
                 <div class="no-results-box">
                     <div class="no-results-icon">

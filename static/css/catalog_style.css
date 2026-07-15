@@ -1,6 +1,4 @@
-/* ==========================================================================
-   1. Общие стили (из главной страницы)
-   ========================================================================== */
+/* Общие сбросы и глобальные настройки */
 * {
     margin: 0;
     padding: 0;
@@ -21,9 +19,7 @@ body {
     margin: 0 auto;
 }
 
-/* ==========================================================================
-   2. Шапка сайта (из главной страницы)
-   ========================================================================== */
+/* Шапка сайта */
 header {
     background-color: #ffffff;
     padding: 15px 0;
@@ -81,11 +77,9 @@ header {
     font-size: 13px;
 }
 
-/* ==========================================================================
-   3. Главный баннер (из главной страницы)
-   ========================================================================== */
+/* Главный баннер (Hero) */
 .hero {
-    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.9));
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.9)), url('../images/hero-bg.jpg') center/cover no-repeat;
     height: 50vh;
     display: flex;
     align-items: center;
@@ -106,9 +100,7 @@ header {
     font-weight: 300;
 }
 
-/* ==========================================================================
-   4. Стили каталога и фильтров
-   ========================================================================== */
+/* Заголовки страниц и секций */
 .menu-title {
     text-align: center;
     font-size: 32px;
@@ -127,6 +119,35 @@ header {
     margin: 10px auto 0;
 }
 
+.section-subtitle {
+    font-size: 24px;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #111;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    letter-spacing: 0.5px;
+    position: relative;
+    padding-left: 15px;
+}
+
+.section-subtitle::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 15%;
+    width: 4px;
+    height: 70%;
+    background-color: #e65100;
+    border-radius: 2px;
+}
+
+/* Отступ секций для фиксации шапки при скролле */
+section[id$="-section"] {
+    scroll-margin-top: 90px;
+}
+
+/* Кнопки навигации по кухням */
 .cuisine-filters {
     display: flex;
     justify-content: center;
@@ -135,7 +156,10 @@ header {
     flex-wrap: wrap;
 }
 
-.filter-btn {
+.cuisine-filters .filter-btn {
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
     background-color: #ffffff;
     color: #555;
     border: 1px solid #e0e0e0;
@@ -161,16 +185,15 @@ header {
     box-shadow: 0 4px 12px rgba(230, 81, 0, 0.2);
 }
 
-/* ==========================================================================
-   5. Сетка и карточки заведений (Без названий)
-   ========================================================================== */
+/* СЕТКА РЕСТОРАНОВ: СТРОГО 3 В РЯД НА ПК */
 .restaurants-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, 70%);
+    grid-template-columns: repeat(3, 1fr);
     gap: 30px;
     margin-bottom: 80px;
 }
 
+/* Карточка ресторана */
 .restaurant-card {
     background-color: #ffffff;
     border-radius: 16px;
@@ -188,6 +211,7 @@ header {
     position: relative;
     height: 220px;
     overflow: hidden;
+    background-color: #eaeaea; /* Заглушка, если картинка не загрузилась */
 }
 
 .restaurant-img {
@@ -212,17 +236,17 @@ header {
     padding: 4px 12px;
     border-radius: 6px;
     text-transform: uppercase;
+    z-index: 2;
 }
 
 .restaurant-content {
-    padding: 10px 20px;
+    padding: 20px;
 }
 
 .restaurant-meta {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 15px;
 }
 
 .restaurant-rating {
@@ -249,9 +273,45 @@ header {
     font-weight: 500;
 }
 
-/* ==========================================================================
-   6. Подвал (из главной страницы)
-   ========================================================================== */
+/* Блок "Ничего не найдено" */
+.no-results-box {
+    background-color: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+    padding: 40px 30px 35px;
+    text-align: center;
+    max-width: 500px;
+    margin: 40px auto 60px;
+    border: 1px solid #e0e0e0;
+}
+
+.no-results-icon {
+    width: 80px;
+    height: 80px;
+    background-color: #fff8e1;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+}
+
+.search-empty-icon {
+    width: 40px;
+    height: 40px;
+    fill: #e65100;
+}
+
+.no-results-title {
+    font-size: 22px;
+    font-weight: 600;
+    color: #111;
+    margin-bottom: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Подвал (Footer) */
 footer {
     background-color: #111;
     color: #aaa;
@@ -264,9 +324,17 @@ footer p {
     margin-bottom: 10px;
 }
 
-/* ==========================================================================
-   7. Адаптивность (Объединенная)
-   ========================================================================== */
+/* --- АДАПТИВНОСТЬ (МЕДИА-ЗАПРОСЫ) --- */
+
+/* Ноутбуки и планшеты: переключаем на 2 карточки в ряд */
+@media (max-width: 1024px) {
+    .restaurants-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+}
+
+/* Экраны меньше 900px: адаптация шапки */
 @media (max-width: 900px) {
     .header-box {
         flex-direction: column;
@@ -287,6 +355,7 @@ footer p {
     }
 }
 
+/* Смартфоны: переключаем на 1 карточку в ряд на всю ширину */
 @media (max-width: 600px) {
     .cuisine-filters {
         gap: 8px;
@@ -300,79 +369,4 @@ footer p {
     .restaurants-grid {
         grid-template-columns: 1fr;
     }
-}
-
-/* Оформление кнопок-ссылок кухонь */
-.cuisine-filters .filter-btn {
-    text-decoration: none;
-    display: inline-block;
-    text-align: center;
-}
-
-/* Стили для подзаголовков видов кухонь */
-.section-subtitle {
-    font-size: 24px;
-    font-weight: 600;
-    text-transform: uppercase;
-    color: #111;
-    margin-top: 40px;
-    margin-bottom: 20px;
-    letter-spacing: 0.5px;
-    position: relative;
-    padding-left: 15px;
-}
-
-/* Небольшая вертикальная декоративная линия слева от подзаголовка */
-.section-subtitle::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 15%;
-    width: 4px;
-    height: 70%;
-    background-color: #e65100;
-    border-radius: 2px;
-}
-
-/* Отступы для разделов, чтобы прокрутка учитывала прилипающую шапку */
-section[id$="-section"] {
-    scroll-margin-top: 90px; /* Высота вашей фиксированной шапки + запас */
-}
-
-/* Стили для сообщения "Ничего не найдено" */
-.no-results-box {
-    background-color: #ffffff;
-    border-radius: 16px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.04);
-    padding: 40px 30px 35px; /* Уменьшили нижний отступ */
-    text-align: center;
-    max-width: 500px;
-    margin: 40px auto 60px; /* Центрирование по горизонтали */
-    border: 1px solid #e0e0e0;
-}
-
-.no-results-icon {
-    width: 80px;
-    height: 80px;
-    background-color: #fff8e1; /* Нежно-желтый фон под иконку */
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto 20px;
-}
-
-.search-empty-icon {
-    width: 40px;
-    height: 40px;
-    fill: #e65100; /* Ваш фирменный цвет */
-}
-
-.no-results-title {
-    font-size: 22px;
-    font-weight: 600;
-    color: #111;
-    margin-bottom: 0; /* Обнулили отступ, так как это последний элемент */
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
 }
