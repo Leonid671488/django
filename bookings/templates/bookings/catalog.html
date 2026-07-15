@@ -1,0 +1,207 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <!-- Подключение файла стилей -->
+    <link rel="stylesheet" href="{% static 'css/catalog_style.css' %}">
+</head>
+<body>
+
+    <!-- Шапка сайта -->
+    <header>
+        <div class="container header-box">
+            <div class="logo">Mono<span>Food</span></div>
+            <nav class="nav-menu">
+                <a href=".." class="nav-link">Главная</a>
+                <a href="#" class="nav-link">Зарегистрироваться</a>
+                <a href="#" class="nav-link">Оставить отзыв</a>
+            </nav>
+            <div class="info-block">
+                <span class="work-time">Ежедневно: 10:00 — 22:00</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Главный баннер -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Сеть Моно-Ресторанов</h1>
+            <p>Откройте для себя новые вкусы в вашем городе</p>
+        </div>
+    </section>
+
+    <!-- Основной контент каталога -->
+    <main class="container">
+
+        <h2 class="menu-title">Каталог заведений</h2>
+
+        <!-- Кнопки-ссылки для навигации по видам кухонь -->
+        <div class="cuisine-filters">
+            <a href="#grill-section" class="filter-btn">Гриль</a>
+            <a href="#fish-section" class="filter-btn">Рыба</a>
+            <a href="#pasta-section" class="filter-btn">Паста</a>
+            <a href="#asia-section" class="filter-btn">Азия</a>
+        </div>
+
+        <!-- РАЗДЕЛ: ГРИЛЬ -->
+        <section id="grill-section">
+            <h3 class="section-subtitle">Гриль</h3>
+            {% if "Гриль" in cuisine_types %}
+                {% for restaurant in restaurants %}
+                    {% if restaurant.cuisine == "Гриль" %}
+                        <div class="restaurants-grid">
+                            <article class="restaurant-card">
+                                <div class="restaurant-img-wrapper">
+                                    <img src="{{ restaurant.image }}" alt="Ресторан" class="restaurant-img">
+                                    <span class="restaurant-badge">{{ restaurant.cuisine }}</span>
+                                </div>
+                                <div class="restaurant-content">
+                                    <div class="restaurant-meta">
+                                        <div class="restaurant-rating">
+                                            <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                            <span>{{ restaurant.rating }}</span>
+                                        </div>
+                                    </div>
+                                    <p class="restaurant-address">{{ restaurant.address }}</p>
+                                </div>
+                            </article>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            {% else %}
+                <div class="no-results-box">
+                    <div class="no-results-icon">
+                        <svg viewBox="0 0 24 24" class="search-empty-icon">
+                            <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+                        </svg>
+                    </div>
+                    <h3 class="no-results-title">Ничего не найдено</h3>
+                </div>
+            {% endif %}
+        </section>
+
+        <!-- РАЗДЕЛ: РЫБА -->
+        <section id="fish-section">
+            <h3 class="section-subtitle">Рыба</h3>
+            {% if "Рыба" in cuisine_types %}
+                {% for restaurant in restaurants %}
+                    {% if restaurant.cuisine == "Рыба" %}
+                        <div class="restaurants-grid">
+                            <article class="restaurant-card">
+                                <div class="restaurant-img-wrapper">
+                                    <img src="{{ restaurant.image }}" alt="Ресторан" class="restaurant-img">
+                                    <span class="restaurant-badge">{{ restaurant.cuisine }}</span>
+                                </div>
+                                <div class="restaurant-content">
+                                    <div class="restaurant-meta">
+                                        <div class="restaurant-rating">
+                                            <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                            <span>{{ restaurant.rating }}</span>
+                                        </div>
+                                    </div>
+                                    <p class="restaurant-address">{{ restaurant.address }}</p>
+                                </div>
+                            </article>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            {% else %}
+                <div class="no-results-box">
+                    <div class="no-results-icon">
+                        <svg viewBox="0 0 24 24" class="search-empty-icon">
+                            <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+                        </svg>
+                    </div>
+                    <h3 class="no-results-title">Ничего не найдено</h3>
+                </div>
+            {% endif %}
+        </section>
+
+        <!-- РАЗДЕЛ: ПАСТА -->
+        <section id="pasta-section">
+            <h3 class="section-subtitle">Паста</h3>
+            {% if "Паста" in cuisine_types %}
+                {% for restaurant in restaurants %}
+                    {% if restaurant.cuisine == "Паста" %}
+                        <div class="restaurants-grid">
+                            <article class="restaurant-card">
+                                <div class="restaurant-img-wrapper">
+                                    <img src="{{ restaurant.image }}" alt="Ресторан" class="restaurant-img">
+                                    <span class="restaurant-badge">{{ restaurant.cuisine }}</span>
+                                </div>
+                                <div class="restaurant-content">
+                                    <div class="restaurant-meta">
+                                        <div class="restaurant-rating">
+                                            <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                            <span>{{ restaurant.rating }}</span>
+                                        </div>
+                                    </div>
+                                    <p class="restaurant-address">{{ restaurant.address }}</p>
+                                </div>
+                            </article>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            {% else %}
+                <div class="no-results-box">
+                    <div class="no-results-icon">
+                        <svg viewBox="0 0 24 24" class="search-empty-icon">
+                            <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+                        </svg>
+                    </div>
+                    <h3 class="no-results-title">Ничего не найдено</h3>
+                </div>
+            {% endif %}
+        </section>
+
+        <!-- РАЗДЕЛ: АЗИЯ -->
+        <section id="asia-section">
+            <h3 class="section-subtitle">Азия</h3>
+            {% if "Азия" in cuisine_types %}
+                {% for restaurant in restaurants %}
+                    {% if restaurant.cuisine == "Азия" %}
+                        <div class="restaurants-grid">
+                            <article class="restaurant-card">
+                                <div class="restaurant-img-wrapper">
+                                    <img src="{{ restaurant.image }}" alt="Ресторан" class="restaurant-img">
+                                    <span class="restaurant-badge">{{ restaurant.cuisine }}</span>
+                                </div>
+                                <div class="restaurant-content">
+                                    <div class="restaurant-meta">
+                                        <div class="restaurant-rating">
+                                            <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                            <span>{{ restaurant.rating }}</span>
+                                        </div>
+                                    </div>
+                                    <p class="restaurant-address">{{ restaurant.address }}</p>
+                                </div>
+                            </article>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            {% else %}
+                <div class="no-results-box">
+                    <div class="no-results-icon">
+                        <svg viewBox="0 0 24 24" class="search-empty-icon">
+                            <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+                        </svg>
+                    </div>
+                    <h3 class="no-results-title">Ничего не найдено</h3>
+                </div>
+            {% endif %}
+        </section>
+
+    </main>
+
+    <!-- Подвал сайта -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Сеть моно-ресторанов MonoFood. Все права защищены.</p>
+            <p>Работаем для вас с 10:00 до 22:00 без выходных.</p>
+        </div>
+    </footer>
+</body>
+</html>
