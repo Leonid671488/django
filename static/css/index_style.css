@@ -1,0 +1,68 @@
+/* Разделы меню (Сетка) */
+.menu-title {
+    text-align: center;
+    font-size: 32px;
+    margin-top: 20px;
+    margin-bottom: 40px;
+    text-transform: uppercase;
+    position: relative;
+}
+
+.menu-title::after {
+    content: '';
+    display: block;
+    width: 50px;
+    height: 3px;
+    background-color: #e65100;
+    margin: 10px auto 0;
+}
+
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 30px;
+    margin-bottom: 80px;
+}
+
+.menu-card {
+    background: #ffffff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-decoration: none;
+    color: inherit;
+}
+
+.menu-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+}
+
+.card-img {
+    height: 220px;
+    background-size: cover;
+    background-position: center;
+}
+
+.img-grill { background-image: url('../icons/grill.png'); }
+.img-fish { background-image: url('../icons/fish.png'); }
+.img-pasta { background-image: url('../icons/pasta.png'); }
+.img-asia { background-image: url('../icons/sushi.png'); }
+
+.card-info {
+    padding: 20px;
+    text-align: center;
+}
+
+.card-info h3 {
+    font-size: 20px;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    color: #111;
+}
+
+.card-info p {
+    font-size: 14px;
+    color: #666;
+}

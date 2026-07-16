@@ -1,0 +1,50 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <!-- Подключение файла стилей -->
+    {% block css %}{% endblock %}
+</head>
+<body>
+
+    <!-- Шапка сайта -->
+    <header>
+        <div class="container header-box">
+            <div class="logo">Mono<span>Food</span></div>
+            <nav class="nav-menu">
+                <a href="{% url 'index' %}" class="nav-link">Главная</a>
+                <a href="{% url 'login' %}" class="nav-link">Войти</a>
+                <a href="{% url 'register' %}" class="nav-link">Зарегистрироваться</a>
+                <a href="#" class="nav-link">Оставить отзыв</a>
+                <a href="{% url 'catalog' %}" class="nav-link">Выбрать ресторан</a>
+            </nav>
+            <div class="info-block">
+                <span class="work-time">Ежедневно: 10:00 — 22:00</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Главный баннер -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Сеть Моно-Ресторанов</h1>
+            <p>Откройте для себя новые вкусы в вашем городе</p>
+        </div>
+    </section>
+
+    <!-- Основной контент -->
+    {% block content %}{% endblock %}
+
+    <!-- Подвал сайта -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Сеть моно-ресторанов MonoFood. Все права защищены.</p>
+            <p>Работаем для вас с 10:00 до 22:00 без выходных.</p>
+        </div>
+    </footer>
+</body>
+</html>

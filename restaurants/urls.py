@@ -18,10 +18,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from bookings.views import index, catalog
+from bookings.views import index, catalog, register, login
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', index, name='index'),
-    path('catalog/', catalog, name='catalog')
+    path('catalog/', catalog, name='catalog'),
+    path('register/', register, name='register'),
+    path('login/', login, name='login')
 ]

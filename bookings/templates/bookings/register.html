@@ -1,0 +1,45 @@
+{% extends "bookings/base.html" %}
+{% load static %}
+
+{% block css %}
+    <!-- Подключение файла стилей -->
+    <link rel="stylesheet" href="{% static 'css/register_style.css' %}">
+{% endblock %}
+
+{% block content %}
+    <!-- Основной контент с формой -->
+    <main class="auth-section">
+        <div class="form-container">
+            <h2>Регистрация</h2>
+            <p class="form-subtitle">Создайте аккаунт, чтобы получить доступ ко всем возможностям</p>
+
+            <form action="#" method="POST">
+                <div class="form-group">
+                    <label for="username">Имя пользователя</label>
+                    <input type="text" id="username" name="username" placeholder="Ваше имя" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="example@mail.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Номер телефона</label>
+                    <input type="tel" id="phone" name="phone" placeholder="+7 (999) 123-45-67" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Пароль</label>
+                    <input type="password" id="password" name="password" placeholder="Мин. 8 символов" required>
+                </div>
+
+                <button type="submit" class="btn-submit">Зарегистрироваться</button>
+            </form>
+
+            <div class="form-footer">
+                Уже есть аккаунт? <a href="{% url 'login' %}">Войти</a>
+            </div>
+        </div>
+    </main>
+{% endblock %}

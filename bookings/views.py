@@ -27,3 +27,19 @@ def catalog(request):
     context["cuisine_types"] = list(map(lambda restaurant: restaurant["cuisine"], context["restaurants"]))
 
     return render(request, "bookings/catalog.html", context=context)
+
+
+def register(request):
+    context = {
+        "title": "Сеть моно-ресторанов | Регистрация"
+    }
+
+    return render(request, "bookings/register.html", context=context)
+
+
+def login(request):
+    context = {
+        "title": "Сеть моно-ресторанов | Вход"
+    }
+
+    return render(request, "bookings/login.html", context=context)
