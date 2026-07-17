@@ -1,0 +1,47 @@
+{% extends "bookings/base.html" %}
+{% load static %}
+
+{% block css %}
+    <!-- Подключение файла стилей -->
+    <link rel="stylesheet" href="{% static 'css/booking_style.css' %}">
+{% endblock %}
+
+{% block content %}
+    <!-- Основной контент с формой -->
+    <main class="auth-section">
+        <article class="restaurant-card">
+            <div class="restaurant-img-wrapper">
+                <img src="{{ restaurant.image }}" alt="Ресторан" class="restaurant-img">
+                <span class="restaurant-badge">{{ restaurant.cuisine }}</span>
+            </div>
+            <div class="restaurant-content">
+                <div class="restaurant-meta">
+                    <div class="restaurant-rating">
+                        <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                        <span>{{ restaurant.rating }}</span>
+                    </div>
+                </div>
+                <p class="restaurant-address">{{ restaurant.address }}</p>
+            </div>
+        </article>
+
+        <div class="form-container">
+            <h2>Бронирование</h2>
+            <p class="form-subtitle">Введите данные, чтобы забронировать столик</p>
+
+            <form action="#" method="POST">
+                <div class="form-group">
+                    <label for="datetime">Дата и время</label>
+                    <input type="datetime-local" id="datetime" name="datetime" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="peoples">Количество человек</label>
+                    <input type="number" id="peoples" name="peoples" min="1" max="6" value="1" required>
+                </div>
+
+                <button type="submit" class="btn-submit">Забронировать</button>
+            </form>
+        </div>
+    </main>
+{% endblock %}

@@ -21,7 +21,7 @@ def catalog(request):
             {"cuisine": "Гриль", "rating": 4.8, "address": "пр. Просвещения, д. 45", "image": "https://img.freepik.com/free-photo/luxury-dining-room-with-elegant-decor-lighting-generated-by-ai_24640-84695.jpg?semt=ais_hybrid"},
             {"cuisine": "Гриль", "rating": 4.8, "address": "пр. Просвещения, д. 45", "image": "https://img.freepik.com/free-photo/luxury-dining-room-with-elegant-decor-lighting-generated-by-ai_24640-84695.jpg?semt=ais_hybrid"},
             {"cuisine": "Гриль", "rating": 4.8, "address": "пр. Просвещения, д. 45", "image": "https://img.freepik.com/free-photo/luxury-dining-room-with-elegant-decor-lighting-generated-by-ai_24640-84695.jpg?semt=ais_hybrid"},
-            {"cuisine": "Азия", "rating": 5.0, "address": "ул. Набережная, д. 12", "image": "https://avatars.mds.yandex.net/i?id=50fcdc06bacd4542e321b8d5b0aff052_l-5254479-images-thumbs&n=13"},
+            {"cuisine": "Азия", "rating": 5.0, "address": "ул. Набережная, д. 12", "image": "https://avatars.mds.yandex.net/i?id=50fcdc06bacd4542e321b8d5b0aff052_l-5254479-images-thumbs&n=13"}
         ]
     }
     context["cuisine_types"] = list(map(lambda restaurant: restaurant["cuisine"], context["restaurants"]))
@@ -43,3 +43,12 @@ def login(request):
     }
 
     return render(request, "bookings/login.html", context=context)
+
+
+def booking(request):
+    context = {
+        "title": "Сеть моно-ресторанов | Бронирование",
+        "restaurant": {"cuisine": "Азия", "rating": 5.0, "address": "ул. Набережная, д. 12", "image": "https://avatars.mds.yandex.net/i?id=50fcdc06bacd4542e321b8d5b0aff052_l-5254479-images-thumbs&n=13"}
+    }
+
+    return render(request, "bookings/booking.html", context=context)

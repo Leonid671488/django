@@ -27,21 +27,23 @@
                 <div class="restaurants-grid">
                     {% for restaurant in restaurants %}
                         {% if restaurant.cuisine == "Гриль" %}
-                            <article class="restaurant-card">
-                                <div class="restaurant-img-wrapper">
-                                    <img src="{{ restaurant.image }}" alt="Ресторан" class="restaurant-img">
-                                    <span class="restaurant-badge">{{ restaurant.cuisine }}</span>
-                                </div>
-                                <div class="restaurant-content">
-                                    <div class="restaurant-meta">
-                                        <div class="restaurant-rating">
-                                            <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-                                            <span>{{ restaurant.rating }}</span>
-                                        </div>
+                            <a href="{% url 'booking' %}" style="text-decoration: none;">
+                                <article class="restaurant-card">
+                                    <div class="restaurant-img-wrapper">
+                                        <img src="{{ restaurant.image }}" alt="Ресторан" class="restaurant-img">
+                                        <span class="restaurant-badge">{{ restaurant.cuisine }}</span>
                                     </div>
-                                    <p class="restaurant-address">{{ restaurant.address }}</p>
-                                </div>
-                            </article>
+                                    <div class="restaurant-content">
+                                        <div class="restaurant-meta">
+                                            <div class="restaurant-rating">
+                                                <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                                <span>{{ restaurant.rating }}</span>
+                                            </div>
+                                        </div>
+                                        <p class="restaurant-address">{{ restaurant.address }}</p>
+                                    </div>
+                                </article>
+                            </a>
                         {% endif %}
                     {% endfor %}
                 </div>
@@ -64,21 +66,23 @@
                 <div class="restaurants-grid">
                     {% for restaurant in restaurants %}
                         {% if restaurant.cuisine == "Рыба" %}
-                            <article class="restaurant-card">
-                                <div class="restaurant-img-wrapper">
-                                    <img src="{{ restaurant.image }}" alt="Ресторан" class="restaurant-img">
-                                    <span class="restaurant-badge">{{ restaurant.cuisine }}</span>
-                                </div>
-                                <div class="restaurant-content">
-                                    <div class="restaurant-meta">
-                                        <div class="restaurant-rating">
-                                            <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-                                            <span>{{ restaurant.rating }}</span>
-                                        </div>
+                            <a href="{% url 'booking' %}" style="text-decoration: none;">
+                                <article class="restaurant-card">
+                                    <div class="restaurant-img-wrapper">
+                                        <img src="{{ restaurant.image }}" alt="Ресторан" class="restaurant-img">
+                                        <span class="restaurant-badge">{{ restaurant.cuisine }}</span>
                                     </div>
-                                    <p class="restaurant-address">{{ restaurant.address }}</p>
-                                </div>
-                            </article>
+                                    <div class="restaurant-content">
+                                        <div class="restaurant-meta">
+                                            <div class="restaurant-rating">
+                                                <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                                <span>{{ restaurant.rating }}</span>
+                                            </div>
+                                        </div>
+                                        <p class="restaurant-address">{{ restaurant.address }}</p>
+                                    </div>
+                                </article>
+                            </a>
                         {% endif %}
                     {% endfor %}
                 </div>
@@ -101,21 +105,23 @@
                 <div class="restaurants-grid">
                     {% for restaurant in restaurants %}
                         {% if restaurant.cuisine == "Паста" %}
-                            <article class="restaurant-card">
-                                <div class="restaurant-img-wrapper">
-                                    <img src="{{ restaurant.image }}" alt="Ресторан" class="restaurant-img">
-                                    <span class="restaurant-badge">{{ restaurant.cuisine }}</span>
-                                </div>
-                                <div class="restaurant-content">
-                                    <div class="restaurant-meta">
-                                        <div class="restaurant-rating">
-                                            <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-                                            <span>{{ restaurant.rating }}</span>
-                                        </div>
+                            <a href="{% url 'booking' %}" style="text-decoration: none;">
+                                <article class="restaurant-card">
+                                    <div class="restaurant-img-wrapper">
+                                        <img src="{{ restaurant.image }}" alt="Ресторан" class="restaurant-img">
+                                        <span class="restaurant-badge">{{ restaurant.cuisine }}</span>
                                     </div>
-                                    <p class="restaurant-address">{{ restaurant.address }}</p>
-                                </div>
-                            </article>
+                                    <div class="restaurant-content">
+                                        <div class="restaurant-meta">
+                                            <div class="restaurant-rating">
+                                                <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                                <span>{{ restaurant.rating }}</span>
+                                            </div>
+                                        </div>
+                                        <p class="restaurant-address">{{ restaurant.address }}</p>
+                                    </div>
+                                </article>
+                            </a>
                         {% endif %}
                     {% endfor %}
                 </div>
@@ -138,21 +144,23 @@
                 <div class="restaurants-grid">
                     {% for restaurant in restaurants %}
                         {% if restaurant.cuisine == "Азия" %}
-                            <article class="restaurant-card">
-                                <div class="restaurant-img-wrapper">
-                                    <img src="{{ restaurant.image }}" alt="Ресторан" class="restaurant-img">
-                                    <span class="restaurant-badge">{{ restaurant.cuisine }}</span>
-                                </div>
-                                <div class="restaurant-content">
-                                    <div class="restaurant-meta">
-                                        <div class="restaurant-rating">
-                                            <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-                                            <span>{{ restaurant.rating }}</span>
-                                        </div>
+                            <a href="{% url 'booking' %}" style="text-decoration: none;">
+                                <article class="restaurant-card">
+                                    <div class="restaurant-img-wrapper">
+                                        <img src="{{ restaurant.image }}" alt="Ресторан" class="restaurant-img">
+                                        <span class="restaurant-badge">{{ restaurant.cuisine }}</span>
                                     </div>
-                                    <p class="restaurant-address">{{ restaurant.address }}</p>
-                                </div>
-                            </article>
+                                    <div class="restaurant-content">
+                                        <div class="restaurant-meta">
+                                            <div class="restaurant-rating">
+                                                <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                                <span>{{ restaurant.rating }}</span>
+                                            </div>
+                                        </div>
+                                        <p class="restaurant-address">{{ restaurant.address }}</p>
+                                    </div>
+                                </article>
+                            </a>
                         {% endif %}
                     {% endfor %}
                 </div>
