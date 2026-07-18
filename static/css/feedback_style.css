@@ -189,3 +189,90 @@
 .btn-submit:active {
     transform: scale(0.98);
 }
+
+.feedback-page {
+    padding: 60px 20px;
+}
+
+/* Заголовок страницы */
+.feedback-header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.feedback-header h1 {
+    font-size: 2.5rem;
+    color: var(--dark-color);
+    margin-bottom: 12px;
+    font-weight: 700;
+}
+
+.feedback-header p {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+}
+
+/* Сетка карточек отзывов */
+.feedback-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 30px;
+    margin-bottom: 70px;
+}
+
+/* Карточка отзыва */
+.feedback-card {
+    background-color: #ffffff;
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.feedback-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.06);
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.guest-name {
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--dark-color);
+}
+
+.feedback-date {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+/* Отображение звезд в карточке */
+.rating-stars {
+    color: var(--star-color);
+    font-size: 1.25rem;
+    margin-bottom: 15px;
+    letter-spacing: 3px;
+}
+
+.feedback-text {
+    line-height: 1.6;
+    font-size: 0.95rem;
+    color: #444444;
+}
+
+/* Заглушка, если отзывов нет */
+.no-feedbacks {
+    grid-column: 1 / -1;
+    text-align: center;
+    color: var(--text-muted);
+    font-style: italic;
+    padding: 40px;
+    font-size: 1.1rem;
+}

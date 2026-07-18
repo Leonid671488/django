@@ -76,7 +76,11 @@ def booking(request):
 def feedback(request):
     context = {
         "title": "Сеть моно-ресторанов | Отзыв",
-        "restaurant": {"cuisine": "Азия", "rating": 5.0, "address": "ул. Набережная, д. 12", "image": "https://avatars.mds.yandex.net/i?id=50fcdc06bacd4542e321b8d5b0aff052_l-5254479-images-thumbs&n=13"}
+        "restaurant": {"cuisine": "Азия", "rating": 5.0, "address": "ул. Набережная, д. 12", "image": "https://avatars.mds.yandex.net/i?id=50fcdc06bacd4542e321b8d5b0aff052_l-5254479-images-thumbs&n=13"},
+        "feedbacks": [
+            {"name": "Крис", "rating": 5, "text": "Отличное место"},
+            {"name": "Алекс", "rating": 4, "text": "Хорошее место"}
+        ]
     }
 
     return render(request, "bookings/feedback.html", context=context)

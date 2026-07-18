@@ -52,4 +52,31 @@
             </form>
         </div>
     </main>
+
+    <!-- Сетка с авто-подстановкой звезд -->
+    <section class="feedback-grid">
+        {% for feedback in feedbacks %}
+        <div class="feedback-card">
+            <div class="card-header">
+                <!-- Выводим имя пользователя или 'Аноним' -->
+                <span class="guest-name">{{ feedback.name|default:"Гость" }}</span>
+                <span class="feedback-date">{{ review.created_at|date:"d.m.Y" }}</span>
+            </div>
+
+            <!-- Автоматический вывод звезд на основе review.rating -->
+            <div class="rating-stars">
+                {% if feedback.rating == 5 %}★★★★★
+                {% elif feedback.rating == 4 %}★★★★☆
+                {% elif feedback.rating == 3 %}★★★☆☆
+                {% elif feedback.rating == 2 %}★★☆☆☆
+                {% else %}★☆☆☆☆
+                {% endif %}
+            </div>
+
+            <p class="feedback-text">{{ feedback.text }}</p>
+        </div>
+        {% empty %}
+        <p class="no-feedbacks">Отзывов пока нет. Будьте первым!</p>
+        {% endfor %}
+    </section>
 {% endblock %}
