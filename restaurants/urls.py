@@ -18,13 +18,15 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from bookings.views import index, catalog, register, login, booking
+from bookings.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', index, name='index'),
     path('catalog/', catalog, name='catalog'),
+    path('feedbacks_catalog/', feedbacks_catalog, name='feedbacks_catalog'),
     path('register/', register, name='register'),
     path('login/', login, name='login'),
-    path('booking/', booking, name='booking')
+    path('booking/', booking, name='booking'),
+    path('feedback/', feedback, name='feedback')
 ]

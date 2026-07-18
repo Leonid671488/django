@@ -1,0 +1,191 @@
+/* Карточка ресторана */
+.restaurant-card {
+    background-color: #ffffff;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    height: 500px;
+    margin: 0 20px 0 0
+}
+
+.restaurant-img-wrapper {
+    position: relative;
+    height: 400px;
+    overflow: hidden;
+    background-color: #eaeaea; /* Заглушка, если картинка не загрузилась */
+}
+
+.restaurant-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.restaurant-badge {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background-color: rgba(255, 255, 255, 0.95);
+    color: #111;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 6px;
+    text-transform: uppercase;
+    z-index: 2;
+}
+
+.restaurant-content {
+    padding: 20px;
+}
+
+.restaurant-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.restaurant-rating {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    background-color: #fff8e1;
+    color: #f57f17;
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.star-icon {
+    width: 16px;
+    height: 16px;
+    fill: #f57f17;
+}
+
+.restaurant-address {
+    font-size: 14px;
+    color: #777;
+    font-weight: 500;
+}
+
+/* === Стили для формы отзыва (в стиле секции регистрации) === */
+.auth-section {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 20px;
+}
+
+.form-container {
+    background-color: #ffffff;
+    width: 100%;
+    max-width: 450px;
+    padding: 40px;
+    border-radius: 16px;
+    box-shadow: 0 4px 25px rgba(0,0,0,0.05);
+}
+
+.form-container h2 {
+    font-size: 28px;
+    color: #111;
+    margin-bottom: 8px;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.form-subtitle {
+    font-size: 14px;
+    color: #777;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #444;
+}
+
+/* Интерактивный блок звёзд (справа налево для работы CSS селекторов) */
+.rating-stars {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+    gap: 4px;
+}
+
+.rating-stars input {
+    display: none;
+}
+
+.rating-stars label {
+    font-size: 28px;
+    color: #e0e0e0;
+    cursor: pointer;
+    margin-bottom: 0;
+    transition: color 0.2s ease;
+}
+
+/* Подсветка звёзд при наведении и выборе */
+.rating-stars label:hover,
+.rating-stars label:hover ~ label,
+.rating-stars input:checked ~ label {
+    color: #e65100;
+}
+
+/* Поле ввода текста отзыва */
+.form-group textarea {
+    width: 100%;
+    padding: 12px 16px;
+    font-size: 15px;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    background-color: #fbfbfb;
+    color: #2c2c2c;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    outline: none;
+    resize: vertical;
+    font-family: inherit;
+}
+
+.form-group textarea:focus {
+    border-color: #e65100;
+    box-shadow: 0 0 0 3px rgba(230, 81, 0, 0.1);
+    background-color: #ffffff;
+}
+
+/* Кнопка отправки */
+.btn-submit {
+    width: 100%;
+    padding: 14px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #ffffff;
+    background-color: #e65100;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    margin-top: 10px;
+}
+
+.btn-submit:hover {
+    background-color: #bf4300;
+}
+
+.btn-submit:active {
+    transform: scale(0.98);
+}

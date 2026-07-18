@@ -1,0 +1,55 @@
+{% extends "bookings/base.html" %}
+{% load static %}
+
+{% block css %}
+    <!-- Подключение файла стилей -->
+    <link rel="stylesheet" href="{% static 'css/feedback_style.css' %}">
+{% endblock %}
+
+{% block content %}
+    <!-- Основной контент с формой -->
+    <main class="auth-section">
+        <article class="restaurant-card">
+            <div class="restaurant-img-wrapper">
+                <img src="{{ restaurant.image }}" alt="Ресторан" class="restaurant-img">
+                <span class="restaurant-badge">{{ restaurant.cuisine }}</span>
+            </div>
+            <div class="restaurant-content">
+                <div class="restaurant-meta">
+                    <div class="restaurant-rating">
+                        <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                        <span>{{ restaurant.rating }}</span>
+                    </div>
+                </div>
+                <p class="restaurant-address">{{ restaurant.address }}</p>
+            </div>
+        </article>
+
+        <div class="form-container">
+            <h2>Оставить отзыв</h2>
+            <p class="form-subtitle">Поделитесь вашим мнением о нашем сервисе</p>
+
+            <form>
+                <!-- Блок оценки звёздами -->
+                <div class="form-group">
+                    <label>Ваша оценка</label>
+                    <div class="rating-stars">
+                        <input type="radio" id="star5" name="rating" value="5" /><label for="star5" title="Отлично">★</label>
+                        <input type="radio" id="star4" name="rating" value="4" /><label for="star4" title="Хорошо">★</label>
+                        <input type="radio" id="star3" name="rating" value="3" /><label for="star3" title="Нормально">★</label>
+                        <input type="radio" id="star2" name="rating" value="2" /><label for="star2" title="Плохо">★</label>
+                        <input type="radio" id="star1" name="rating" value="1" /><label for="star1" title="Ужасно">★</label>
+                    </div>
+                </div>
+
+                <!-- Блок отзыва -->
+                <div class="form-group">
+                    <label for="review-comment">Ваш отзыв</label>
+                    <textarea id="review-comment" rows="5" placeholder="Напишите, что вам понравилось или что стоит улучшить..."></textarea>
+                </div>
+
+                <button type="submit" class="btn-submit">Отправить отзыв</button>
+            </form>
+        </div>
+    </main>
+{% endblock %}
