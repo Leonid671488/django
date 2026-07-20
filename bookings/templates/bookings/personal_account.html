@@ -1,0 +1,75 @@
+{% extends "bookings/base.html" %}
+{% load static %}
+
+{% block css %}
+    <!-- Подключение файла стилей -->
+    <link rel="stylesheet" href="{% static 'css/personal_account_style.css' %}">
+{% endblock %}
+
+{% block content %}
+    <!-- Главный контент -->
+    <main class="container">
+        <div class="profile-card">
+            <!-- Блок аватарки -->
+            <div class="avatar-container">
+                <img src="{{ avatar_url }}" alt="Аватар пользователя" class="avatar-img">
+                <button class="btn-change-avatar" title="Изменить фото">📷</button>
+            </div>
+
+            <!-- Данные пользователя -->
+            <div class="profile-info">
+                <h1 class="user-name">{{ name }}</h1>
+
+                <div class="info-item">
+                    <span class="info-label">Электронная почта</span>
+                    <span class="info-value">{{ email }}</span>
+                </div>
+
+                <div class="info-item">
+                    <span class="info-label">Номер телефона</span>
+                    <span class="info-value">{{ phone }}</span>
+                </div>
+
+                <!-- Кнопка действия -->
+                <button class="btn-edit">Редактировать профиль</button>
+            </div>
+        </div>
+
+        <section>
+            <h2 class="menu-title">История ресторанов</h2>
+
+            {% if restaurants %}
+                <div class="restaurants-grid">
+                    {% for restaurant in restaurants %}
+                        <a href="{% url 'feedback' %}" style="text-decoration: none;">
+                            <article class="restaurant-card">
+                                <div class="restaurant-img-wrapper">
+                                    <img src="{{ restaurant.image }}" alt="Ресторан" class="restaurant-img">
+                                    <span class="restaurant-badge">{{ restaurant.cuisine }}</span>
+                                </div>
+                                <div class="restaurant-content">
+                                    <div class="restaurant-meta">
+                                        <div class="restaurant-rating">
+                                            <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                            <span>{{ restaurant.rating }}</span>
+                                        </div>
+                                    </div>
+                                    <p class="restaurant-address">{{ restaurant.address }}</p>
+                                </div>
+                            </article>
+                        </a>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <div class="no-results-box">
+                    <div class="no-results-icon">
+                        <svg viewBox="0 0 24 24" class="search-empty-icon">
+                            <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+                        </svg>
+                    </div>
+                    <h3 class="no-results-title">Ничего не найдено</h3>
+                </div>
+            {% endif %}
+        </section>
+    </main>
+{% endblock %}

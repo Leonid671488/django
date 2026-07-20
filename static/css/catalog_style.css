@@ -209,19 +209,6 @@ section[id$="-section"] {
     letter-spacing: 0.5px;
 }
 
-/* Подвал (Footer) */
-footer {
-    background-color: #111;
-    color: #aaa;
-    padding: 40px 0;
-    text-align: center;
-    font-size: 14px;
-}
-
-footer p {
-    margin-bottom: 10px;
-}
-
 /* --- АДАПТИВНОСТЬ (МЕДИА-ЗАПРОСЫ) --- */
 
 /* Ноутбуки и планшеты: переключаем на 2 карточки в ряд */
