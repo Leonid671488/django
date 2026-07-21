@@ -3,7 +3,7 @@
 
 {% block css %}
     <!-- Подключение файла стилей -->
-    <link rel="stylesheet" href="{% static 'css/booking_style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/booking.css' %}">
 {% endblock %}
 
 {% block content %}
@@ -44,4 +44,38 @@
             </form>
         </div>
     </main>
+
+    <!-- Сетка с авто-подстановкой звезд -->
+    <section class="feedback-grid">
+        {% for feedback in feedbacks %}
+            <div class="feedback-card">
+                <div class="card-header">
+                    <!-- Блок с аватаркой и именем -->
+                    <div class="user-info">
+                        {% if feedback.avatar_url %}
+                            <img src="{{ feedback.avatar_url }}" alt="{{ feedback.name }}" class="user-avatar">
+                        {% else %}
+                            <!-- Заглушка, если аватарки нет -->
+                            <div class="user-avatar-placeholder">{{ feedback.name|default:"Г"|slice:":1" }}</div>
+                        {% endif %}
+                        <span class="guest-name">{{ feedback.name|default:"Гость" }}</span>
+                    </div>
+                </div>
+
+                <!-- Звезды -->
+                <div class="rating-stars">
+                    {% if feedback.rating == 5 %}★★★★★
+                    {% elif feedback.rating == 4 %}★★★★☆
+                    {% elif feedback.rating == 3 %}★★★☆☆
+                    {% elif feedback.rating == 2 %}★★☆☆☆
+                    {% else %}★☆☆☆☆
+                    {% endif %}
+                </div>
+
+                <p class="feedback-text">{{ feedback.text }}</p>
+            </div>
+        {% empty %}
+            <p class="no-feedbacks">Отзывов пока нет. Будьте первым!</p>
+        {% endfor %}
+    </section>
 {% endblock %}

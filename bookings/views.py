@@ -48,7 +48,15 @@ def login(request):
 def booking(request):
     context = {
         "title": "Сеть моно-ресторанов | Бронирование",
-        "restaurant": {"cuisine": "Азия", "rating": 5.0, "address": "ул. Набережная, д. 12", "image": "https://avatars.mds.yandex.net/i?id=50fcdc06bacd4542e321b8d5b0aff052_l-5254479-images-thumbs&n=13"}
+        "restaurant": {"cuisine": "Азия", "rating": 5.0, "address": "ул. Набережная, д. 12", "image": "https://avatars.mds.yandex.net/i?id=50fcdc06bacd4542e321b8d5b0aff052_l-5254479-images-thumbs&n=13"},
+        "feedbacks": [
+            {"name": "Крис",
+             "avatar_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTDzCjpNB3USxuzY_DGQnpYOlEJr2Oq-y8dwxu-fjTjl_NGQg46fkL_6o&s=10",
+             "rating": 5, "text": "Отличное место"},
+            {"name": "Алекс",
+             "avatar_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTDzCjpNB3USxuzY_DGQnpYOlEJr2Oq-y8dwxu-fjTjl_NGQg46fkL_6o&s=10",
+             "rating": 4, "text": "Хорошее место"}
+        ]
     }
 
     return render(request, "bookings/booking.html", context=context)

@@ -6,7 +6,7 @@
     box-shadow: 0 4px 20px rgba(0,0,0,0.04);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     height: 500px;
-    margin: 0 20px 0 0
+    margin: 0 20px 0 0;
 }
 
 .restaurant-img-wrapper {
@@ -176,4 +176,102 @@
 .form-footer a:hover {
     color: #bf4300;
     text-decoration: underline;
+}
+
+/* Сетка карточек отзывов */
+.feedback-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 24px;
+    margin: 0 20px 50px 20px;
+}
+
+/* Карточка отзыва */
+.feedback-card {
+    background-color: #ffffff;
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    box-sizing: border-box;
+}
+
+.feedback-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.06);
+}
+
+/* Шапка карточки */
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+/* Контейнер для аватарки и имени */
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* Стили для реальной аватарки */
+.user-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+/* Стили для аватарки-заглушки */
+.user-avatar-placeholder {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #eef2f5;
+    color: #64748b;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    flex-shrink: 0;
+}
+
+.guest-name {
+    font-weight: 700;
+    font-size: 1.05rem;
+    color: var(--dark-color);
+    line-height: 1.2;
+}
+
+/* Отображение звезд в карточке */
+.rating-stars {
+    color: #ffca28;
+    font-size: 1.15rem;
+    margin-bottom: 12px;
+    letter-spacing: 2px;
+    line-height: 1;
+}
+
+/* Текст отзыва */
+.feedback-text {
+    line-height: 1.5;
+    font-size: 0.95rem;
+    color: #475569;
+    margin: 0;
+}
+
+/* Заглушка, если отзывов нет */
+.no-feedbacks {
+    grid-column: 1 / -1;
+    text-align: center;
+    color: var(--text-muted);
+    font-style: italic;
+    padding: 40px;
+    font-size: 1.1rem;
 }
