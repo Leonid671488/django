@@ -1,30 +1,32 @@
 from django.shortcuts import render
+from bookings.models import Restaurant, RestaurantCategory, Booking, Feedback, User
+
 
 # Create your views here.
 
 def index(request):
     context = {
-        "title": "Сеть моно-ресторанов | Главная"
+        "title": "Сеть моно-ресторанов | Главная",
+        "categories": RestaurantCategory.objects.all()
     }
 
     return render(request, "bookings/index.html", context=context)
 
 
 def catalog(request):
+    avg = lambda lst: sum(lst) / len(lst)
     context = {
         "title": "Сеть моно-ресторанов | Выбор ресторана",
-        "restaurants": [
-            {"cuisine": "Рыба", "rating": 4.9, "address": "Приморский бульвар, д. 8", "image": "https://img.freepik.com/premium-photo/beautiful-old-bildings-marseille_948265-267099.jpg?semt=ais_hybrid"},
-            {"cuisine": "Рыба", "rating": 4.9, "address": "Приморский бульвар, д. 8", "image": "https://img.freepik.com/premium-photo/beautiful-old-bildings-marseille_948265-267099.jpg?semt=ais_hybrid"},
-            {"cuisine": "Гриль", "rating": 4.8, "address": "пр. Просвещения, д. 45", "image": "https://img.freepik.com/free-photo/luxury-dining-room-with-elegant-decor-lighting-generated-by-ai_24640-84695.jpg?semt=ais_hybrid"},
-            {"cuisine": "Гриль", "rating": 4.8, "address": "пр. Просвещения, д. 45", "image": "https://img.freepik.com/free-photo/luxury-dining-room-with-elegant-decor-lighting-generated-by-ai_24640-84695.jpg?semt=ais_hybrid"},
-            {"cuisine": "Гриль", "rating": 4.8, "address": "пр. Просвещения, д. 45", "image": "https://img.freepik.com/free-photo/luxury-dining-room-with-elegant-decor-lighting-generated-by-ai_24640-84695.jpg?semt=ais_hybrid"},
-            {"cuisine": "Гриль", "rating": 4.8, "address": "пр. Просвещения, д. 45", "image": "https://img.freepik.com/free-photo/luxury-dining-room-with-elegant-decor-lighting-generated-by-ai_24640-84695.jpg?semt=ais_hybrid"},
-            {"cuisine": "Гриль", "rating": 4.8, "address": "пр. Просвещения, д. 45", "image": "https://img.freepik.com/free-photo/luxury-dining-room-with-elegant-decor-lighting-generated-by-ai_24640-84695.jpg?semt=ais_hybrid"},
-            {"cuisine": "Азия", "rating": 5.0, "address": "ул. Набережная, д. 12", "image": "https://avatars.mds.yandex.net/i?id=50fcdc06bacd4542e321b8d5b0aff052_l-5254479-images-thumbs&n=13"}
-        ]
+        "restaurants": [],
+        "categories": RestaurantCategory.objects.all()
     }
-    context["cuisine_types"] = list(map(lambda restaurant: restaurant["cuisine"], context["restaurants"]))
+
+    for restaurant in Restaurant.objects.all():
+        feedbacks = list(map(lambda fb: fb.mark, Feedback.objects.filter(booking__restaurant=Restaurant.objects.get(pk=restaurant.pk))))
+        if feedbacks:
+            context["restaurants"].append((restaurant, round(avg(feedbacks), 1)))
+        else:
+            context["restaurants"].append((restaurant, 0))
 
     return render(request, "bookings/catalog.html", context=context)
 
@@ -46,49 +48,51 @@ def login(request):
 
 
 def booking(request):
+    avg = lambda lst: sum(lst) / len(lst)
     context = {
         "title": "Сеть моно-ресторанов | Бронирование",
-        "restaurant": {"cuisine": "Азия", "rating": 5.0, "address": "ул. Набережная, д. 12", "image": "https://avatars.mds.yandex.net/i?id=50fcdc06bacd4542e321b8d5b0aff052_l-5254479-images-thumbs&n=13"},
-        "feedbacks": [
-            {"name": "Крис",
-             "avatar_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTDzCjpNB3USxuzY_DGQnpYOlEJr2Oq-y8dwxu-fjTjl_NGQg46fkL_6o&s=10",
-             "rating": 5, "text": "Отличное место"},
-            {"name": "Алекс",
-             "avatar_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTDzCjpNB3USxuzY_DGQnpYOlEJr2Oq-y8dwxu-fjTjl_NGQg46fkL_6o&s=10",
-             "rating": 4, "text": "Хорошее место"}
-        ]
+        "restaurant": Restaurant.objects.get(address="Приморский бульвар, д. 8"),
+        "feedbacks": Feedback.objects.filter(booking__restaurant=Restaurant.objects.get(address="Приморский бульвар, д. 8"))
     }
+
+    if context["feedbacks"]:
+        context["rating"] = round(avg(list(map(lambda fb: fb.mark, Feedback.objects.filter(booking__restaurant=Restaurant.objects.get(pk=context["restaurant"].pk))))), 1)
+    else:
+        context["rating"] = 0
 
     return render(request, "bookings/booking.html", context=context)
 
 
 def feedback(request):
+    avg = lambda lst: sum(lst) / len(lst)
     context = {
         "title": "Сеть моно-ресторанов | Отзыв",
-        "restaurant": {"cuisine": "Азия", "rating": 5.0, "address": "ул. Набережная, д. 12", "image": "https://avatars.mds.yandex.net/i?id=50fcdc06bacd4542e321b8d5b0aff052_l-5254479-images-thumbs&n=13"},
-        "feedbacks": [
-            {"name": "Крис", "avatar_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTDzCjpNB3USxuzY_DGQnpYOlEJr2Oq-y8dwxu-fjTjl_NGQg46fkL_6o&s=10", "rating": 5, "text": "Отличное место"},
-            {"name": "Алекс", "avatar_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTDzCjpNB3USxuzY_DGQnpYOlEJr2Oq-y8dwxu-fjTjl_NGQg46fkL_6o&s=10", "rating": 4, "text": "Хорошее место"}
-        ]
+        "restaurant": Restaurant.objects.get(address="Приморский бульвар, д. 8"),
+        "feedbacks": Feedback.objects.filter(booking__restaurant=Restaurant.objects.get(address="Приморский бульвар, д. 8"))
     }
+
+    if context["feedbacks"]:
+        context["rating"] = round(avg(list(map(lambda fb: fb.mark, Feedback.objects.filter(booking__restaurant=Restaurant.objects.get(pk=context["restaurant"].pk))))), 1)
+    else:
+        context["rating"] = 0
 
     return render(request, "bookings/feedback.html", context=context)
 
 
 def personal_account(request):
+    avg = lambda lst: sum(lst) / len(lst)
     context = {
-        "name": "Крис",
-        "password": "1234567890",
-        "email": "burmalda@gmail.com",
-        "phone": "+7 999 123-45-67",
-        "avatar_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTDzCjpNB3USxuzY_DGQnpYOlEJr2Oq-y8dwxu-fjTjl_NGQg46fkL_6o&s=10",
-        "restaurants": [
-            {"cuisine": "Рыба", "rating": 4.9, "address": "Приморский бульвар, д. 8", "image": "https://img.freepik.com/premium-photo/beautiful-old-bildings-marseille_948265-267099.jpg?semt=ais_hybrid"},
-            {"cuisine": "Рыба", "rating": 4.9, "address": "Приморский бульвар, д. 8", "image": "https://img.freepik.com/premium-photo/beautiful-old-bildings-marseille_948265-267099.jpg?semt=ais_hybrid"},
-            {"cuisine": "Гриль", "rating": 4.8, "address": "пр. Просвещения, д. 45", "image": "https://img.freepik.com/free-photo/luxury-dining-room-with-elegant-decor-lighting-generated-by-ai_24640-84695.jpg?semt=ais_hybrid"},
-            {"cuisine": "Гриль", "rating": 4.8, "address": "пр. Просвещения, д. 45", "image": "https://img.freepik.com/free-photo/luxury-dining-room-with-elegant-decor-lighting-generated-by-ai_24640-84695.jpg?semt=ais_hybrid"},
-            {"cuisine": "Азия", "rating": 5.0, "address": "ул. Набережная, д. 12", "image": "https://avatars.mds.yandex.net/i?id=50fcdc06bacd4542e321b8d5b0aff052_l-5254479-images-thumbs&n=13"}
-        ]
+        "title": "Сеть моно-ресторанов | Личный кабинет",
+        "user": User.objects.get(phone="+7 999 123-45-67"),
+        "restaurants": []
     }
+
+    restaurants = list(map(lambda bk: bk.restaurant, Booking.objects.filter(user=User.objects.get(phone="+7 999 123-45-67"))))
+    for restaurant in restaurants:
+        feedbacks = list(map(lambda fb: fb.mark, Feedback.objects.filter(booking__restaurant=Restaurant.objects.get(pk=restaurant.pk))))
+        if feedbacks:
+            context["restaurants"].append((restaurant, round(avg(feedbacks), 1)))
+        else:
+            context["restaurants"].append((restaurant, 0))
 
     return render(request, "bookings/personal_account.html", context=context)

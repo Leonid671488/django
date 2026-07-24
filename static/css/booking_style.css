@@ -6,7 +6,7 @@
     box-shadow: 0 4px 20px rgba(0,0,0,0.04);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     height: 500px;
-    margin: 0 20px 0 0
+    margin: 0 50px 0 0;
 }
 
 .restaurant-img-wrapper {
@@ -71,7 +71,7 @@
     font-weight: 500;
 }
 
-/* === Стили для формы отзыва (в стиле секции регистрации) === */
+/* === Новые стили для секции регистрации === */
 .auth-section {
     flex: 1;
     display: flex;
@@ -117,35 +117,7 @@
     color: #444;
 }
 
-/* Интерактивный блок звёзд (справа налево для работы CSS селекторов) */
-.rating-stars {
-    display: flex;
-    flex-direction: row-reverse;
-    justify-content: flex-end;
-    gap: 4px;
-}
-
-.rating-stars input {
-    display: none;
-}
-
-.rating-stars label {
-    font-size: 28px;
-    color: #e0e0e0;
-    cursor: pointer;
-    margin-bottom: 0;
-    transition: color 0.2s ease;
-}
-
-/* Подсветка звёзд при наведении и выборе */
-.rating-stars label:hover,
-.rating-stars label:hover ~ label,
-.rating-stars input:checked ~ label {
-    color: #e65100;
-}
-
-/* Поле ввода текста отзыва */
-.form-group textarea {
+.form-group input {
     width: 100%;
     padding: 12px 16px;
     font-size: 15px;
@@ -155,17 +127,14 @@
     color: #2c2c2c;
     transition: border-color 0.2s ease, box-shadow 0.2s ease;
     outline: none;
-    resize: vertical;
-    font-family: inherit;
 }
 
-.form-group textarea:focus {
+.form-group input:focus {
     border-color: #e65100;
     box-shadow: 0 0 0 3px rgba(230, 81, 0, 0.1);
     background-color: #ffffff;
 }
 
-/* Кнопка отправки */
 .btn-submit {
     width: 100%;
     padding: 14px;
@@ -190,8 +159,23 @@
     transform: scale(0.98);
 }
 
-.feedback-page {
-    padding: 60px 20px;
+.form-footer {
+    margin-top: 25px;
+    text-align: center;
+    font-size: 14px;
+    color: #666;
+}
+
+.form-footer a {
+    color: #e65100;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s ease;
+}
+
+.form-footer a:hover {
+    color: #bf4300;
+    text-decoration: underline;
 }
 
 /* Сетка карточек отзывов */
@@ -199,7 +183,7 @@
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
     gap: 24px;
-    margin: 0 20px 50px 20px;
+    margin: 0 60px 50px 60px;
 }
 
 /* Карточка отзыва */

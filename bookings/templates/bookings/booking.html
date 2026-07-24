@@ -3,7 +3,7 @@
 
 {% block css %}
     <!-- Подключение файла стилей -->
-    <link rel="stylesheet" href="{% static 'css/booking.css' %}">
+    <link rel="stylesheet" href="{% static 'css/booking_style.css' %}">
 {% endblock %}
 
 {% block content %}
@@ -11,14 +11,14 @@
     <main class="auth-section">
         <article class="restaurant-card">
             <div class="restaurant-img-wrapper">
-                <img src="{{ restaurant.image }}" alt="Ресторан" class="restaurant-img">
-                <span class="restaurant-badge">{{ restaurant.cuisine }}</span>
+                <img src="../../media/{{ restaurant.image }}" alt="Ресторан" class="restaurant-img">
+                <span class="restaurant-badge">{{ restaurant.category.name }}</span>
             </div>
             <div class="restaurant-content">
                 <div class="restaurant-meta">
                     <div class="restaurant-rating">
                         <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-                        <span>{{ restaurant.rating }}</span>
+                        <span>{{ rating }}</span>
                     </div>
                 </div>
                 <p class="restaurant-address">{{ restaurant.address }}</p>
@@ -52,22 +52,22 @@
                 <div class="card-header">
                     <!-- Блок с аватаркой и именем -->
                     <div class="user-info">
-                        {% if feedback.avatar_url %}
-                            <img src="{{ feedback.avatar_url }}" alt="{{ feedback.name }}" class="user-avatar">
+                        {% if feedback.booking.user.avatar %}
+                            <img src="../../media/{{ feedback.booking.user.avatar }}" alt="{{ feedback.booking.user.name }}" class="user-avatar">
                         {% else %}
                             <!-- Заглушка, если аватарки нет -->
-                            <div class="user-avatar-placeholder">{{ feedback.name|default:"Г"|slice:":1" }}</div>
+                            <div class="user-avatar-placeholder">{{ feedback.booking.user.name|default:"Г"|slice:":1" }}</div>
                         {% endif %}
-                        <span class="guest-name">{{ feedback.name|default:"Гость" }}</span>
+                        <span class="guest-name">{{ feedback.booking.user.name|default:"Гость" }}</span>
                     </div>
                 </div>
 
                 <!-- Звезды -->
                 <div class="rating-stars">
-                    {% if feedback.rating == 5 %}★★★★★
-                    {% elif feedback.rating == 4 %}★★★★☆
-                    {% elif feedback.rating == 3 %}★★★☆☆
-                    {% elif feedback.rating == 2 %}★★☆☆☆
+                    {% if feedback.mark == 5 %}★★★★★
+                    {% elif feedback.mark == 4 %}★★★★☆
+                    {% elif feedback.mark == 3 %}★★★☆☆
+                    {% elif feedback.mark == 2 %}★★☆☆☆
                     {% else %}★☆☆☆☆
                     {% endif %}
                 </div>

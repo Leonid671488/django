@@ -12,22 +12,22 @@
         <div class="profile-card">
             <!-- Блок аватарки -->
             <div class="avatar-container">
-                <img src="{{ avatar_url }}" alt="Аватар пользователя" class="avatar-img">
+                <img src="../media/{{ user.avatar }}" alt="Аватар пользователя" class="avatar-img">
                 <button class="btn-change-avatar" title="Изменить фото">📷</button>
             </div>
 
             <!-- Данные пользователя -->
             <div class="profile-info">
-                <h1 class="user-name">{{ name }}</h1>
+                <h1 class="user-name">{{ user.name }}</h1>
 
                 <div class="info-item">
                     <span class="info-label">Электронная почта</span>
-                    <span class="info-value">{{ email }}</span>
+                    <span class="info-value">{{ user.email }}</span>
                 </div>
 
                 <div class="info-item">
                     <span class="info-label">Номер телефона</span>
-                    <span class="info-value">{{ phone }}</span>
+                    <span class="info-value">{{ user.phone }}</span>
                 </div>
 
                 <!-- Кнопка действия -->
@@ -40,18 +40,18 @@
 
             {% if restaurants %}
                 <div class="restaurants-grid">
-                    {% for restaurant in restaurants %}
+                    {% for restaurant, rating in restaurants %}
                         <a href="{% url 'feedback' %}" style="text-decoration: none;">
                             <article class="restaurant-card">
                                 <div class="restaurant-img-wrapper">
-                                    <img src="{{ restaurant.image }}" alt="Ресторан" class="restaurant-img">
-                                    <span class="restaurant-badge">{{ restaurant.cuisine }}</span>
+                                    <img src="../media/{{ restaurant.image }}" alt="Ресторан" class="restaurant-img">
+                                    <span class="restaurant-badge">{{ restaurant.category.name }}</span>
                                 </div>
                                 <div class="restaurant-content">
                                     <div class="restaurant-meta">
                                         <div class="restaurant-rating">
                                             <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-                                            <span>{{ restaurant.rating }}</span>
+                                            <span>{{ rating }}</span>
                                         </div>
                                     </div>
                                     <p class="restaurant-address">{{ restaurant.address }}</p>

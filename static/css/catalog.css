@@ -171,44 +171,6 @@ section[id$="-section"] {
     font-weight: 500;
 }
 
-/* Блок "Ничего не найдено" */
-.no-results-box {
-    background-color: #ffffff;
-    border-radius: 16px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.04);
-    padding: 40px 30px 35px;
-    text-align: center;
-    max-width: 500px;
-    margin: 40px auto 60px;
-    border: 1px solid #e0e0e0;
-}
-
-.no-results-icon {
-    width: 80px;
-    height: 80px;
-    background-color: #fff8e1;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto 20px;
-}
-
-.search-empty-icon {
-    width: 40px;
-    height: 40px;
-    fill: #e65100;
-}
-
-.no-results-title {
-    font-size: 22px;
-    font-weight: 600;
-    color: #111;
-    margin-bottom: 0;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-
 /* --- АДАПТИВНОСТЬ (МЕДИА-ЗАПРОСЫ) --- */
 
 /* Ноутбуки и планшеты: переключаем на 2 карточки в ряд */

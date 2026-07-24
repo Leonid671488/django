@@ -42,7 +42,7 @@
 
 .menu-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 30px;
     margin-bottom: 80px;
 }
@@ -63,15 +63,18 @@
 }
 
 .card-img {
+    position: relative;
     height: 220px;
-    background-size: cover;
-    background-position: center;
+    overflow: hidden;
+    background-color: #eaeaea; /* Заглушка, если картинка не загрузилась */
 }
 
-.img-grill { background-image: url('../icons/grill.png'); }
-.img-fish { background-image: url('../icons/fish.png'); }
-.img-pasta { background-image: url('../icons/pasta.png'); }
-.img-asia { background-image: url('../icons/sushi.png'); }
+.category_img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
 
 .card-info {
     padding: 20px;

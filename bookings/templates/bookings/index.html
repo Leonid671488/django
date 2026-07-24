@@ -20,41 +20,17 @@
         <h2 class="menu-title">Наши направления</h2>
 
         <div class="menu-grid">
-            <!-- Гриль -->
-            <a href="catalog/#grill-section" class="menu-card">
-                <div class="card-img img-grill"></div>
-                <div class="card-info">
-                    <h3>Гриль</h3>
-                    <p>Сочные стейки и мясо с дымком на открытом огне</p>
-                </div>
-            </a>
-
-            <!-- Рыба -->
-            <a href="catalog/#fish-section" class="menu-card">
-                <div class="card-img img-fish"></div>
-                <div class="card-info">
-                    <h3>Рыба</h3>
-                    <p>Свежайшие морепродукты и рыба дикого вылова</p>
-                </div>
-            </a>
-
-            <!-- Паста -->
-            <a href="catalog/#pasta-section" class="menu-card">
-                <div class="card-img img-pasta"></div>
-                <div class="card-info">
-                    <h3>Паста</h3>
-                    <p>Домашняя паста ручной работы по римским рецептам</p>
-                </div>
-            </a>
-
-            <!-- Азия -->
-            <a href="catalog/#asia-section" class="menu-card">
-                <div class="card-img img-asia"></div>
-                <div class="card-info">
-                    <h3>Азия</h3>
-                    <p>Яркие вкусы WOK, раменов и традиционных специй</p>
-                </div>
-            </a>
+            {% for category in categories %}
+                <a href="catalog/#{{ category.name }}" class="menu-card">
+                    <div class="card-img">
+                        <img src="media/{{ category.image }}" class="category_img">
+                    </div>
+                    <div class="card-info">
+                        <h3>{{ category.name }}</h3>
+                        <p>{{ category.description }}</p>
+                    </div>
+                </a>
+            {% endfor %}
         </div>
     </main>
 {% endblock %}

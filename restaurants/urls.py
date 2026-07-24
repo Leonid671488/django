@@ -20,6 +20,9 @@ from django.urls import path
 
 from bookings.views import *
 
+from django.conf import settings
+from django.conf.urls.static import static
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', index, name='index'),
@@ -29,4 +32,4 @@ urlpatterns = [
     path('booking/', booking, name='booking'),
     path('feedback/', feedback, name='feedback'),
     path('personal_account/', personal_account, name='personal_account')
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
