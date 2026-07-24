@@ -3,7 +3,7 @@
 
 {% block css %}
     <!-- Подключение файла стилей -->
-    <link rel="stylesheet" href="{% static 'css/booking_style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/booking.css' %}">
 {% endblock %}
 
 {% block content %}
@@ -22,6 +22,9 @@
                     </div>
                 </div>
                 <p class="restaurant-address">{{ restaurant.address }}</p>
+                <div class="restaurant-menu">
+                    <a href="{{ restaurant.menu }}" download="menu.jpg"><h3>Меню ресторана</h3></a>
+                </div>
             </div>
         </article>
 
@@ -38,6 +41,11 @@
                 <div class="form-group">
                     <label for="peoples">Количество человек</label>
                     <input type="number" id="peoples" name="peoples" min="1" max="6" value="1" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="meal-comment">Предзаказ блюд</label>
+                    <textarea id="meal-comment" rows="5" placeholder="Напишите блюда, которые хотели бы заказать..."></textarea>
                 </div>
 
                 <button type="submit" class="btn-submit">Забронировать</button>

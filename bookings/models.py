@@ -16,6 +16,7 @@ class Restaurant(models.Model):
     image = models.ImageField(upload_to="restaurants_media", blank=True)
     address = models.CharField(max_length=128, unique=True)
     category = models.ForeignKey(RestaurantCategory, on_delete=models.CASCADE)
+    menu = models.FileField(upload_to="restaurants_menu", blank=True)
 
     def __str__(self):
         return f"{self.category.name} | {self.address}"
@@ -36,7 +37,7 @@ class Booking(models.Model):
     time = models.DateTimeField()
     peoples = models.PositiveSmallIntegerField()
     status = models.CharField(max_length=16, default="Простаивает")
-    booking_time = models.DateTimeField(default=datetime.datetime.now())
+    booking_time = models.DateTimeField(default=datetime.datetime.now().strftime("%Y-%m-%d %H:%M"))
     restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 

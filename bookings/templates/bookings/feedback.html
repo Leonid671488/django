@@ -3,7 +3,7 @@
 
 {% block css %}
     <!-- Подключение файла стилей -->
-    <link rel="stylesheet" href="{% static 'css/feedback_style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/feedback.css' %}">
 {% endblock %}
 
 {% block content %}
@@ -22,6 +22,9 @@
                     </div>
                 </div>
                 <p class="restaurant-address">{{ restaurant.address }}</p>
+                <div class="restaurant-menu">
+                    <a href="{{ restaurant.menu.url }}" download><h3>Меню ресторана</h3></a>
+                </div>
             </div>
         </article>
 
