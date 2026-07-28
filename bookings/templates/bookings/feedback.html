@@ -11,7 +11,7 @@
     <main class="auth-section">
         <article class="restaurant-card">
             <div class="restaurant-img-wrapper">
-                <img src="../../media/{{ restaurant.image }}" alt="Ресторан" class="restaurant-img">
+                <img src="/media/{{ restaurant.image }}" alt="Ресторан" class="restaurant-img">
                 <span class="restaurant-badge">{{ restaurant.category.name }}</span>
             </div>
             <div class="restaurant-content">
@@ -23,7 +23,7 @@
                 </div>
                 <p class="restaurant-address">{{ restaurant.address }}</p>
                 <div class="restaurant-menu">
-                    <a href="{{ restaurant.menu.url }}" download><h3>Меню ресторана</h3></a>
+                    <a href="/media/{{ restaurant.menu }}" download><h3>Меню ресторана</h3></a>
                 </div>
             </div>
         </article>
@@ -64,7 +64,7 @@
                     <!-- Блок с аватаркой и именем -->
                     <div class="user-info">
                         {% if feedback.booking.user.avatar %}
-                            <img src="../../media/{{ feedback.booking.user.avatar }}" alt="{{ feedback.booking.user.name }}" class="user-avatar">
+                            <img src="/media/{{ feedback.booking.user.avatar }}" alt="{{ feedback.booking.user.name }}" class="user-avatar">
                         {% else %}
                             <!-- Заглушка, если аватарки нет -->
                             <div class="user-avatar-placeholder">{{ feedback.booking.user.name|default:"Г"|slice:":1" }}</div>

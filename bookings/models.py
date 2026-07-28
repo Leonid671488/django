@@ -35,9 +35,9 @@ class User(models.Model):
 
 class Booking(models.Model):
     time = models.DateTimeField()
-    peoples = models.PositiveSmallIntegerField()
+    peoples = models.PositiveSmallIntegerField(default=1)
     status = models.CharField(max_length=16, default="Простаивает")
-    booking_time = models.DateTimeField(default=datetime.datetime.now().strftime("%Y-%m-%d %H:%M"))
+    booking_time = models.TextField(default=datetime.datetime.now().strftime("%Y-%m-%d %H:%M"))
     restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 

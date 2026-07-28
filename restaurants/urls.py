@@ -16,7 +16,7 @@ Including another URLconf
 """
 
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 
 from bookings.views import *
 
@@ -26,10 +26,9 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', index, name='index'),
-    path('catalog/', catalog, name='catalog'),
+    path('restaurants/', include('bookings.urls', namespace='restaurants')),
     path('register/', register, name='register'),
     path('login/', login, name='login'),
-    path('booking/', booking, name='booking'),
     path('feedback/', feedback, name='feedback'),
     path('personal_account/', personal_account, name='personal_account')
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

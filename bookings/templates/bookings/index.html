@@ -16,21 +16,32 @@
     </section>
 
     <!-- Концепции / Меню -->
-    <main class="container">
-        <h2 class="menu-title">Наши направления</h2>
+    {% if categories %}
+        <main class="container">
+            <h2 class="menu-title">Наши направления</h2>
 
-        <div class="menu-grid">
-            {% for category in categories %}
-                <a href="catalog/#{{ category.name }}" class="menu-card">
-                    <div class="card-img">
-                        <img src="media/{{ category.image }}" class="category_img">
-                    </div>
-                    <div class="card-info">
-                        <h3>{{ category.name }}</h3>
-                        <p>{{ category.description }}</p>
-                    </div>
-                </a>
-            {% endfor %}
+            <div class="menu-grid">
+                {% for category in categories %}
+                    <a href="restaurants/#{{ category.name }}" class="menu-card">
+                        <div class="card-img">
+                            <img src="/media/{{ category.image }}" class="category_img">
+                        </div>
+                        <div class="card-info">
+                            <h3>{{ category.name }}</h3>
+                            <p>{{ category.description }}</p>
+                        </div>
+                    </a>
+                {% endfor %}
+            </div>
+        </main>
+    {% else %}
+        <div class="no-results-box">
+            <div class="no-results-icon">
+                <svg viewBox="0 0 24 24" class="search-empty-icon">
+                    <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+                </svg>
+            </div>
+            <h3 class="no-results-title">Ничего не найдено</h3>
         </div>
-    </main>
+    {% endif %}
 {% endblock %}

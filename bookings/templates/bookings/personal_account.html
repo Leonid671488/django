@@ -12,7 +12,7 @@
         <div class="profile-card">
             <!-- Блок аватарки -->
             <div class="avatar-container">
-                <img src="../media/{{ user.avatar }}" alt="Аватар пользователя" class="avatar-img">
+                <img src="/media/{{ user.avatar }}" alt="Аватар пользователя" class="avatar-img">
                 <button class="btn-change-avatar" title="Изменить фото">📷</button>
             </div>
 
@@ -44,7 +44,7 @@
                         <a href="{% url 'feedback' %}" style="text-decoration: none;">
                             <article class="restaurant-card">
                                 <div class="restaurant-img-wrapper">
-                                    <img src="../media/{{ restaurant.image }}" alt="Ресторан" class="restaurant-img">
+                                    <img src="/media/{{ restaurant.image }}" alt="Ресторан" class="restaurant-img">
                                     <span class="restaurant-badge">{{ restaurant.category.name }}</span>
                                 </div>
                                 <div class="restaurant-content">
