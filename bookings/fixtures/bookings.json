@@ -1,0 +1,21 @@
+[
+{
+    "model": "bookings.restaurantcategory",
+    "pk": 2,
+    "fields": {
+        "image": "restaurants_media/free-icon-fishes-353664.png",
+        "name": "Рыба",
+        "description": "Высокая морская кухня."
+    }
+},
+{
+    "model": "bookings.restaurant",
+    "pk": 1,
+    "fields": {
+        "image": "restaurants_media/2000-nikita_kryuchkov-16818db6c0ac0d533ed3dfe5b763563d.jpg",
+        "address": "Приморский бульвар, д. 67",
+        "category": 2,
+        "menu": "restaurants_menu/kafe-rybnaya-manufaktura-1-na-efremova_b6b3b_full-511115.jpg"
+    }
+}
+]

@@ -27,8 +27,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', index, name='index'),
     path('restaurants/', include('bookings.urls', namespace='restaurants')),
-    path('register/', register, name='register'),
-    path('login/', login, name='login'),
-    path('feedback/', feedback, name='feedback'),
-    path('personal_account/', personal_account, name='personal_account')
+    path('users/', include('users.urls', namespace='users'))
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

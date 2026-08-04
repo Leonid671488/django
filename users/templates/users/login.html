@@ -3,15 +3,15 @@
 
 {% block css %}
     <!-- Подключение файла стилей -->
-    <link rel="stylesheet" href="{% static 'css/register.css' %}">
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
 {% endblock %}
 
 {% block content %}
     <!-- Основной контент с формой -->
     <main class="auth-section">
         <div class="form-container">
-            <h2>Регистрация</h2>
-            <p class="form-subtitle">Создайте аккаунт, чтобы получить доступ ко всем возможностям</p>
+            <h2>Вход</h2>
+            <p class="form-subtitle">Войдите в аккаунт, чтобы получить доступ ко всем возможностям</p>
 
             <form action="#" method="POST">
                 <div class="form-group">
@@ -20,25 +20,15 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" placeholder="example@mail.com" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="phone">Номер телефона</label>
-                    <input type="tel" id="phone" name="phone" placeholder="+7 (999) 123-45-67" required>
-                </div>
-
-                <div class="form-group">
                     <label for="password">Пароль</label>
                     <input type="password" id="password" name="password" placeholder="Мин. 8 символов" minlength="8" required>
                 </div>
 
-                <button type="submit" class="btn-submit">Зарегистрироваться</button>
+                <button type="submit" class="btn-submit">Войти</button>
             </form>
 
             <div class="form-footer">
-                Уже есть аккаунт? <a href="{% url 'login' %}">Войти</a>
+                Нет аккаунта? <a href="{% url 'users:register' %}">Зарегистрироваться</a>
             </div>
         </div>
     </main>

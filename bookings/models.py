@@ -1,5 +1,4 @@
 from django.db import models
-import datetime
 
 # Create your models here.
 
@@ -20,35 +19,3 @@ class Restaurant(models.Model):
 
     def __str__(self):
         return f"{self.category.name} | {self.address}"
-
-
-class User(models.Model):
-    avatar = models.ImageField(upload_to="users_media", blank=True)
-    name = models.CharField(max_length=32)
-    password = models.CharField(max_length=64, unique=True)
-    email = models.EmailField()
-    phone = models.CharField(max_length=16)
-
-    def __str__(self):
-        return f"{self.name} | {self.phone}"
-
-
-class Booking(models.Model):
-    time = models.DateTimeField()
-    peoples = models.PositiveSmallIntegerField(default=1)
-    status = models.CharField(max_length=16, default="Простаивает")
-    booking_time = models.TextField(default=datetime.datetime.now().strftime("%Y-%m-%d %H:%M"))
-    restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return f"{self.user.name} | {self.status}"
-
-
-class Feedback(models.Model):
-    mark = models.PositiveSmallIntegerField()
-    text = models.TextField(blank=True)
-    booking = models.ForeignKey(Booking, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return f"{self.booking.user.name} | {self.mark}"
