@@ -1,6 +1,6 @@
 from django.shortcuts import render
-from users.models import User, Booking, Feedback
-from bookings.models import Restaurant, RestaurantCategory
+from users.models import User
+from bookings.models import Booking, Feedback, Restaurant
 
 
 # Create your views here.
@@ -19,38 +19,6 @@ def login(request):
     }
 
     return render(request, "users/login.html", context=context)
-
-
-def booking(request):
-    avg = lambda lst: sum(lst) / len(lst)
-    context = {
-        "title": "Сеть моно-ресторанов | Бронирование",
-        "restaurant": Restaurant.objects.get(address="Приморский бульвар, д. 67"),
-        "feedbacks": Feedback.objects.filter(booking__restaurant=Restaurant.objects.get(address="Приморский бульвар, д. 67"))
-    }
-
-    if context["feedbacks"]:
-        context["rating"] = round(avg(list(map(lambda fb: fb.mark, Feedback.objects.filter(booking__restaurant=Restaurant.objects.get(pk=context["restaurant"].pk))))), 1)
-    else:
-        context["rating"] = 0
-
-    return render(request, "users/booking.html", context=context)
-
-
-def feedback(request):
-    avg = lambda lst: sum(lst) / len(lst)
-    context = {
-        "title": "Сеть моно-ресторанов | Отзыв",
-        "restaurant": Restaurant.objects.get(address="Приморский бульвар, д. 67"),
-        "feedbacks": Feedback.objects.filter(booking__restaurant=Restaurant.objects.get(address="Приморский бульвар, д. 67"))
-    }
-
-    if context["feedbacks"]:
-        context["rating"] = round(avg(list(map(lambda fb: fb.mark, Feedback.objects.filter(booking__restaurant=Restaurant.objects.get(pk=context["restaurant"].pk))))), 1)
-    else:
-        context["rating"] = 0
-
-    return render(request, "users/feedback.html", context=context)
 
 
 def personal_account(request):

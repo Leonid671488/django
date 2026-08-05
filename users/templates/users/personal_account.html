@@ -12,7 +12,7 @@
         <div class="profile-card">
             <!-- Блок аватарки -->
             <div class="avatar-container">
-                <img src="/media/{{ user.avatar }}" alt="Аватар пользователя" class="avatar-img">
+                <img src="/media/{{ user.image }}" alt="Аватар пользователя" class="avatar-img">
                 <button class="btn-change-avatar" title="Изменить фото">📷</button>
             </div>
 
@@ -41,7 +41,7 @@
             {% if restaurants %}
                 <div class="restaurants-grid">
                     {% for restaurant, rating in restaurants %}
-                        <a href="{% url 'feedback' %}" style="text-decoration: none;">
+                        <a href="{% url 'restaurants:feedback' %}" style="text-decoration: none;">
                             <article class="restaurant-card">
                                 <div class="restaurant-img-wrapper">
                                     <img src="/media/{{ restaurant.image }}" alt="Ресторан" class="restaurant-img">

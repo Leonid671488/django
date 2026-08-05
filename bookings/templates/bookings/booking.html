@@ -3,7 +3,7 @@
 
 {% block css %}
     <!-- Подключение файла стилей -->
-    <link rel="stylesheet" href="{% static 'css/feedback.css' %}">
+    <link rel="stylesheet" href="{% static 'css/booking.css' %}">
 {% endblock %}
 
 {% block content %}
@@ -23,35 +23,32 @@
                 </div>
                 <p class="restaurant-address">{{ restaurant.address }}</p>
                 <div class="restaurant-menu">
-                    <a href="/media/{{ restaurant.menu }}" download><h3>Меню ресторана</h3></a>
+                    <a href="/media/{{ restaurant.menu }}" download="menu.jpg"><h3>Меню ресторана</h3></a>
                 </div>
             </div>
         </article>
 
         <div class="form-container">
-            <h2>Оставить отзыв</h2>
-            <p class="form-subtitle">Поделитесь вашим мнением о нашем сервисе</p>
+            <h2>Бронирование</h2>
+            <p class="form-subtitle">Введите данные, чтобы забронировать столик</p>
 
-            <form>
-                <!-- Блок оценки звёздами -->
+            <form action="#" method="POST">
                 <div class="form-group">
-                    <label>Ваша оценка</label>
-                    <div class="rating-stars">
-                        <input type="radio" id="star5" name="rating" value="5" /><label for="star5" title="Отлично">★</label>
-                        <input type="radio" id="star4" name="rating" value="4" /><label for="star4" title="Хорошо">★</label>
-                        <input type="radio" id="star3" name="rating" value="3" /><label for="star3" title="Нормально">★</label>
-                        <input type="radio" id="star2" name="rating" value="2" /><label for="star2" title="Плохо">★</label>
-                        <input type="radio" id="star1" name="rating" value="1" /><label for="star1" title="Ужасно">★</label>
-                    </div>
+                    <label for="datetime">Дата и время</label>
+                    <input type="datetime-local" id="datetime" name="datetime" required>
                 </div>
 
-                <!-- Блок отзыва -->
                 <div class="form-group">
-                    <label for="review-comment">Ваш отзыв</label>
-                    <textarea id="review-comment" rows="5" placeholder="Напишите, что вам понравилось или что стоит улучшить..."></textarea>
+                    <label for="peoples">Количество человек</label>
+                    <input type="number" id="peoples" name="peoples" min="1" max="6" value="1" required>
                 </div>
 
-                <button type="submit" class="btn-submit">Отправить отзыв</button>
+                <div class="form-group">
+                    <label for="meal-comment">Предзаказ блюд</label>
+                    <textarea id="meal-comment" rows="5" placeholder="Напишите блюда, которые хотели бы заказать..."></textarea>
+                </div>
+
+                <button type="submit" class="btn-submit">Забронировать</button>
             </form>
         </div>
     </main>
@@ -63,13 +60,13 @@
                 <div class="card-header">
                     <!-- Блок с аватаркой и именем -->
                     <div class="user-info">
-                        {% if feedback.booking.user.avatar %}
-                            <img src="/media/{{ feedback.booking.user.avatar }}" alt="{{ feedback.booking.user.name }}" class="user-avatar">
+                        {% if feedback.booking.user.image %}
+                            <img src="/media/{{ feedback.booking.user.image }}" alt="{{ feedback.booking.user.name }}" class="user-avatar">
                         {% else %}
                             <!-- Заглушка, если аватарки нет -->
-                            <div class="user-avatar-placeholder">{{ feedback.booking.user.name|default:"Г"|slice:":1" }}</div>
+                            <div class="user-avatar-placeholder">{{ feedback.booking.user.username|default:"Г"|slice:":1" }}</div>
                         {% endif %}
-                        <span class="guest-name">{{ feedback.booking.user.name|default:"Гость" }}</span>
+                        <span class="guest-name">{{ feedback.booking.user.username|default:"Гость" }}</span>
                     </div>
                 </div>
 
