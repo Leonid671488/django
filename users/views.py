@@ -1,7 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, HttpResponseRedirect
+from users.forms import UserLoginForm
 from users.models import User
 from bookings.models import Booking, Feedback, Restaurant
-
+from django.contrib import auth
+from django.urls import reverse
 
 # Create your views here.
 
@@ -14,8 +16,23 @@ def register(request):
 
 
 def login(request):
+    if request.method == "POST":
+        form = UserLoginForm(data=request.POST)
+        if form.is_valid():
+            username = request.POST["username"]
+            password = request.POST["password"]
+
+            user = auth.authenticate(username=username, password=password)
+
+            if user and user.is_active:
+                auth.login(request, user)
+                return HttpResponseRedirect(reverse('users:personal_account'))
+    else:
+        form = UserLoginForm()
+
     context = {
-        "title": "Сеть моно-ресторанов | Вход"
+        "title": "Сеть моно-ресторанов | Вход",
+        "form": form
     }
 
     return render(request, "users/login.html", context=context)
