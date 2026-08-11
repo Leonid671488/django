@@ -1,5 +1,5 @@
 from django.shortcuts import render, HttpResponseRedirect
-from users.forms import UserLoginForm
+from users.forms import UserLoginForm, UserRegisterForm
 from users.models import User
 from bookings.models import Booking, Feedback, Restaurant
 from django.contrib import auth
@@ -8,8 +8,17 @@ from django.urls import reverse
 # Create your views here.
 
 def register(request):
+    if request.method == "POST":
+        form = UserRegisterForm(data=request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('users:login'))
+    else:
+        form = UserRegisterForm()
+
     context = {
-        "title": "Сеть моно-ресторанов | Регистрация"
+        "title": "Сеть моно-ресторанов | Регистрация",
+        "form": form
     }
 
     return render(request, "users/register.html", context=context)
@@ -42,7 +51,7 @@ def personal_account(request):
     avg = lambda lst: sum(lst) / len(lst)
     context = {
         "title": "Сеть моно-ресторанов | Личный кабинет",
-        "user": User.objects.get(phone="+7 999 123-45-67"),
+        "user": User.objects.get(email="burmalda67@gmail.com"),
         "restaurants": []
     }
 

@@ -8,6 +8,12 @@
 
 {% block content %}
     <!-- Основной контент с формой -->
+    {% if form.errors %}
+        <div>
+            {{ form.errors }}
+        </div>
+    {% endif %}
+
     <main class="auth-section">
         <div class="form-container">
             <h2>Вход</h2>
@@ -15,16 +21,15 @@
 
             <form action="{% url 'users:login' %}" method="post">
                 {% csrf_token %}
-                {{ form.as_p }}
-<!--                <div class="form-group">-->
-<!--                    <label for="username">Имя пользователя</label>-->
-<!--                    <input type="text" id="username" name="username" placeholder="Ваше имя" required>-->
-<!--                </div>-->
+                <div class="form-group">
+                    <label for="{{ form.username.id_for_label }}">Имя пользователя</label>
+                    {{ form.username }}
+                </div>
 
-<!--                <div class="form-group">-->
-<!--                    <label for="password">Пароль</label>-->
-<!--                    <input type="password" id="password" name="password" placeholder="Мин. 8 символов" minlength="8" required>-->
-<!--                </div>-->
+                <div class="form-group">
+                    <label for="{{ form.password.id_for_label }}">Пароль</label>
+                    {{ form.password }}
+                </div>
 
                 <button type="submit" class="btn-submit">Войти</button>
             </form>

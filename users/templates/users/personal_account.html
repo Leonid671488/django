@@ -3,7 +3,7 @@
 
 {% block css %}
     <!-- Подключение файла стилей -->
-    <link rel="stylesheet" href="{% static 'css/personal_account.css' %}">
+    <link rel="stylesheet" href="{% static 'css/personal_account1.css' %}">
 {% endblock %}
 
 {% block content %}
@@ -23,11 +23,6 @@
                 <div class="info-item">
                     <span class="info-label">Электронная почта</span>
                     <span class="info-value">{{ user.email }}</span>
-                </div>
-
-                <div class="info-item">
-                    <span class="info-label">Номер телефона</span>
-                    <span class="info-value">{{ user.phone }}</span>
                 </div>
 
                 <!-- Кнопка действия -->

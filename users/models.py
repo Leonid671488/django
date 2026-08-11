@@ -5,4 +5,3 @@ from django.contrib.auth.models import AbstractUser
 
 class User(AbstractUser):
     image = models.ImageField(upload_to="users_media", blank=True)
-    phone = models.CharField(max_length=16, unique=True)
