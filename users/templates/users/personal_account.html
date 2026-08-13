@@ -3,7 +3,7 @@
 
 {% block css %}
     <!-- Подключение файла стилей -->
-    <link rel="stylesheet" href="{% static 'css/personal_account1.css' %}">
+    <link rel="stylesheet" href="{% static 'css/personal_account2.css' %}">
 {% endblock %}
 
 {% block content %}
@@ -12,8 +12,8 @@
         <div class="profile-card">
             <!-- Блок аватарки -->
             <div class="avatar-container">
-                <img src="/media/{{ user.image }}" alt="Аватар пользователя" class="avatar-img">
-                <button class="btn-change-avatar" title="Изменить фото">📷</button>
+                <img src="{% if user.image %}{{ user.image.url }}{% else %}{% static 'images.webp' %}{% endif %}" alt="Аватар пользователя" class="avatar-img">
+                <a class="btn-change-avatar" href="{% url 'users:change_profile' %}" title="Изменить фото">📷</a>
             </div>
 
             <!-- Данные пользователя -->
@@ -26,7 +26,7 @@
                 </div>
 
                 <!-- Кнопка действия -->
-                <button class="btn-edit">Редактировать профиль</button>
+                <a class="btn-edit" href="{% url 'users:change_profile' %}">Редактировать профиль</a>
             </div>
         </div>
 

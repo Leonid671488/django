@@ -31,10 +31,10 @@
 
     <main class="auth-section">
         <div class="form-container">
-            <h2>Регистрация</h2>
-            <p class="form-subtitle">Создайте аккаунт, чтобы получить доступ ко всем возможностям</p>
+            <h2>Редактирование профиля</h2>
+            <p class="form-subtitle">Измените данные своего профиля</p>
 
-            <form action="{% url 'users:register' %}" method="post">
+            <form action="{% url 'users:change_profile' %}" method="post" enctype="multipart/form-data">
                 {% csrf_token %}
                 <div class="form-group">
                     <label for="{{ form.username.id_for_label }}">Имя пользователя</label>
@@ -61,11 +61,11 @@
                     {{ form.password2 }}
                 </div>
 
-                <button type="submit" class="btn-submit">Зарегистрироваться</button>
+                <button type="submit" class="btn-submit">Сохранить</button>
             </form>
 
             <div class="form-footer">
-                Уже есть аккаунт? <a href="{% url 'users:login' %}">Войти</a>
+                <a href="{% url 'users:personal_account' %}">Назад</a>
             </div>
         </div>
     </main>

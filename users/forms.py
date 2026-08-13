@@ -1,4 +1,4 @@
-from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, UserChangeForm
 from users.models import User
 from django import forms
 
@@ -26,6 +26,9 @@ class UserRegisterForm(UserCreationForm):
         "class": "form-group-input",
         "placeholder": "example@mail.com"
     }))
+    image = forms.ImageField(widget=forms.FileInput(attrs={
+        "class": "form-group-input"
+    }))
     password1 = forms.CharField(widget=forms.PasswordInput(attrs={
         "class": "form-group-input",
         "placeholder": "Мин. 8 символов"
@@ -38,4 +41,28 @@ class UserRegisterForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ("username", "email", "password1", "password2")
+        fields = ("username", "email", "image", "password1", "password2")
+
+
+class UserProfileForm(UserChangeForm):
+    username = forms.CharField(widget=forms.TextInput(attrs={
+        "class": "form-group-input"
+    }))
+    email = forms.EmailField(widget=forms.EmailInput(attrs={
+        "class": "form-group-input"
+    }))
+    image = forms.ImageField(widget=forms.FileInput(attrs={
+        "class": "form-group-input"
+    }))
+    password1 = forms.CharField(widget=forms.PasswordInput(attrs={
+        "class": "form-group-input",
+        "placeholder": "Мин. 8 символов"
+    }))
+    password2 = forms.CharField(widget=forms.PasswordInput(attrs={
+        "class": "form-group-input",
+        "placeholder": "Подтверждение пароля"
+    }))
+
+    class Meta:
+        model = User
+        fields = ("username", "email", "image")

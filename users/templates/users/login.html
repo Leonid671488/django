@@ -3,14 +3,29 @@
 
 {% block css %}
     <!-- Подключение файла стилей -->
-    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+    <link rel="stylesheet" href="{% static 'css/login1.css' %}">
 {% endblock %}
 
 {% block content %}
     <!-- Основной контент с формой -->
     {% if form.errors %}
-        <div>
-            {{ form.errors }}
+        <div class="error-alert" role="alert">
+            <!-- Иконка ошибки (восклицательный знак в круге) -->
+            <svg class="error-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+
+            <div class="error-content">
+                <h3 class="error-title">Ошибка</h3>
+                <p class="error-message">{{ form.errors }}</p>
+            </div>
+
+            <!-- Кнопка закрытия -->
+            <button class="error-close" aria-label="Закрыть">
+                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
         </div>
     {% endif %}
 
