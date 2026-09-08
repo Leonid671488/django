@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, HttpResponseRedirect
 from bookings.models import Restaurant, RestaurantCategory, Booking, Feedback
 
 # Create your views here.
@@ -60,3 +60,25 @@ def feedback(request):
         context["rating"] = 0
 
     return render(request, "bookings/feedback.html", context=context)
+
+
+def basket(request):
+    context = {
+        "basket": Booking.objects.filter(user=request.user)
+    }
+    return render(request, "bookings/basket.html", context)
+
+
+def basket_add(request, restaurant_id):
+    restaurant = Restaurant.objects.get(id=restaurant_id)
+    user_basket = Booking.objects.filter(user=request.user, restaurant=restaurant)
+
+    if not user_basket.exists():
+        Booking.objects.craete(user=request.user, restaurant=restaurant)
+    return HttpResponseRedirect(request.META.get("HTTP_REFERER"))
+
+
+def basket_delete(request, booking_id):
+    booking1 = Booking.objects.get(id=booking_id)
+    booking1.delete()
+    return HttpResponseRedirect(request.META.get("HTTP_REFERER"))

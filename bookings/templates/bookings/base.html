@@ -21,6 +21,7 @@
                 {% if user.is_authenticated %}
                     <a href="{% url 'users:personal_account' %}" class="nav-link">{{ user.username }}</a>
                     <a href="{% url 'users:logout' %}" class="nav-link">Выйти</a>
+                    <a href="{% url 'restaurants:basket' %}" class="nav-link">Заказы</a>
                 {% else %}
                     <a href="{% url 'users:login' %}" class="nav-link">Войти</a>
                     <a href="{% url 'users:register' %}" class="nav-link">Зарегистрироваться</a>

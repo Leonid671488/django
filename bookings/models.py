@@ -1,3 +1,5 @@
+from email.policy import default
+
 from django.db import models
 from users.models import User
 import datetime
@@ -42,5 +44,3 @@ class Feedback(models.Model):
 
     def __str__(self):
         return f"{self.booking.user.username} | {self.mark}"
-
-

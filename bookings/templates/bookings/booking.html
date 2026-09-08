@@ -32,7 +32,7 @@
             <h2>Бронирование</h2>
             <p class="form-subtitle">Введите данные, чтобы забронировать столик</p>
 
-            <form action="#" method="POST">
+            <form action="{% url 'restaurants:booking_delete' restaurant.id %}" method="POST">
                 <div class="form-group">
                     <label for="datetime">Дата и время</label>
                     <input type="datetime-local" id="datetime" name="datetime" required>
