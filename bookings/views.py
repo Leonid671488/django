@@ -1,5 +1,8 @@
 from django.shortcuts import render, HttpResponseRedirect
 from bookings.models import Restaurant, RestaurantCategory, Booking, Feedback
+from bookings.forms import BookingForm, FeedbackForm
+from django.urls import reverse
+
 
 # Create your views here.
 
@@ -30,20 +33,29 @@ def catalog(request):
     return render(request, "bookings/catalog.html", context=context)
 
 
-def booking(request):
-    avg = lambda lst: sum(lst) / len(lst)
+def booking(request, restaurant_id):
+    if request.method == "POST":
+        form = BookingForm(data=request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('restaurants:booking'))
+    else:
+        form = BookingForm()
+
     context = {
         "title": "Сеть моно-ресторанов | Бронирование",
-        "restaurant": Restaurant.objects.get(address="Приморский бульвар, д. 67"),
-        "feedbacks": Feedback.objects.filter(booking__restaurant=Restaurant.objects.get(address="Приморский бульвар, д. 67"))
+        "restaurant": Restaurant.objects.get(id=restaurant_id),
+        "feedbacks": Feedback.objects.filter(booking__restaurant=Restaurant.objects.get(id=restaurant_id)),
+        "form": form
     }
 
+    avg = lambda lst: sum(lst) / len(lst)
     if context["feedbacks"]:
-        context["rating"] = round(avg(list(map(lambda fb: fb.mark, Feedback.objects.filter(booking__restaurant=Restaurant.objects.get(pk=context["restaurant"].pk))))), 1)
+        context["rating"] = round(avg(list(map(lambda fb: fb.mark, context["feedbacks"]))), 1)
     else:
         context["rating"] = 0
 
-    return render(request, "bookings/booking.html", context=context)
+    return render(request, "users/booking.html", context=context)
 
 
 def feedback(request):

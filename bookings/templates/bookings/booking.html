@@ -32,20 +32,21 @@
             <h2>Бронирование</h2>
             <p class="form-subtitle">Введите данные, чтобы забронировать столик</p>
 
-            <form action="{% url 'restaurants:booking_delete' restaurant.id %}" method="POST">
+            <form action="{% url 'restaurants:booking' restaurant.id %}" method="POST">
+                {% csrf_token %}
                 <div class="form-group">
-                    <label for="datetime">Дата и время</label>
-                    <input type="datetime-local" id="datetime" name="datetime" required>
+                    <label for="{{ form.time.id_for_label }}">Дата и время</label>
+                    {{ form.time }}
                 </div>
 
                 <div class="form-group">
-                    <label for="peoples">Количество человек</label>
-                    <input type="number" id="peoples" name="peoples" min="1" max="6" value="1" required>
+                    <label for="{{ form.peoples.id_for_label }}">Количество человек</label>
+                    {{ form.peoples }}
                 </div>
 
                 <div class="form-group">
-                    <label for="meal-comment">Предзаказ блюд</label>
-                    <textarea id="meal-comment" rows="5" placeholder="Напишите блюда, которые хотели бы заказать..."></textarea>
+                    <label for="{{ form.pre_order.id_for_label }}">Предзаказ блюд</label>
+                    {{ form.pre_order }}
                 </div>
 
                 <button type="submit" class="btn-submit">Забронировать</button>

@@ -26,7 +26,7 @@
                     <div class="restaurants-grid">
                         {% for restaurant, rating in restaurants %}
                             {% if restaurant.category.name == category.name %}
-                                <a href="{% url 'restaurants:booking' %}" style="text-decoration: none;">
+                                <a href="{% url 'restaurants:booking' restaurant.id %}" style="text-decoration: none;">
                                     <article class="restaurant-card">
                                         <div class="restaurant-img-wrapper">
                                             <img src="/media/{{ restaurant.image }}" alt="Ресторан" class="restaurant-img">

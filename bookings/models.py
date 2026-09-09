@@ -28,13 +28,13 @@ class Restaurant(models.Model):
 class Booking(models.Model):
     time = models.DateTimeField()
     peoples = models.PositiveSmallIntegerField(default=1)
-    status = models.CharField(max_length=16, default="Простаивает")
     booking_time = models.TextField(default=datetime.datetime.now().strftime("%Y-%m-%d %H:%M"))
+    pre_order = models.TextField(blank=True, default=False)
     restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f"{self.user.username} | {self.status}"
+        return f"{self.user.username} | {self.booking_time}"
 
 
 class Feedback(models.Model):

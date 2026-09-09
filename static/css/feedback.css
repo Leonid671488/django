@@ -125,7 +125,7 @@
     gap: 4px;
 }
 
-.rating-stars input {
+.rating-stars-input {
     display: none;
 }
 
@@ -145,7 +145,7 @@
 }
 
 /* Поле ввода текста отзыва */
-.form-group textarea {
+.form-group-textarea {
     width: 100%;
     padding: 12px 16px;
     font-size: 15px;
@@ -159,7 +159,7 @@
     font-family: inherit;
 }
 
-.form-group textarea:focus {
+.form-group-textarea:focus {
     border-color: #e65100;
     box-shadow: 0 0 0 3px rgba(230, 81, 0, 0.1);
     background-color: #ffffff;
