@@ -1,6 +1,7 @@
 from django.shortcuts import render, HttpResponseRedirect
 from bookings.models import Restaurant, RestaurantCategory, Booking, Feedback
 from bookings.forms import BookingForm, FeedbackForm
+from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 
 
@@ -33,12 +34,17 @@ def catalog(request):
     return render(request, "bookings/catalog.html", context=context)
 
 
+@login_required()
 def booking(request, restaurant_id):
     if request.method == "POST":
         form = BookingForm(data=request.POST)
         if form.is_valid():
-            form.save()
-            return HttpResponseRedirect(reverse('restaurants:booking'))
+            booking_instance = form.save(commit=False)
+            booking_instance.restaurant = Restaurant.objects.get(id=restaurant_id)
+            booking_instance.user =  request.user
+            booking_instance.save()
+
+            return HttpResponseRedirect(reverse('restaurants:basket'))
     else:
         form = BookingForm()
 
@@ -55,42 +61,41 @@ def booking(request, restaurant_id):
     else:
         context["rating"] = 0
 
-    return render(request, "users/booking.html", context=context)
+    return render(request, "bookings/booking.html", context=context)
 
 
-def feedback(request):
-    avg = lambda lst: sum(lst) / len(lst)
+@login_required()
+def feedback(request, restaurant_id):
+    if request.method == "POST":
+        form = FeedbackForm(data=request.POST)
+        if form.is_valid():
+            feedback_instance = form.save(commit=False)
+            feedback_instance.booking = Booking.objects.get(user=request.user, restaurant=Restaurant.objects.get(id=restaurant_id))
+            feedback_instance.save()
+
+            return HttpResponseRedirect(reverse('users:personal_account'))
+    else:
+        form = FeedbackForm()
+
     context = {
         "title": "Сеть моно-ресторанов | Отзыв",
-        "restaurant": Restaurant.objects.get(address="Приморский бульвар, д. 67"),
-        "feedbacks": Feedback.objects.filter(booking__restaurant=Restaurant.objects.get(address="Приморский бульвар, д. 67"))
+        "restaurant": Restaurant.objects.get(id=restaurant_id),
+        "feedbacks": Feedback.objects.filter(booking__restaurant=Restaurant.objects.get(id=restaurant_id)),
+        "form": form
     }
 
+    avg = lambda lst: sum(lst) / len(lst)
     if context["feedbacks"]:
-        context["rating"] = round(avg(list(map(lambda fb: fb.mark, Feedback.objects.filter(booking__restaurant=Restaurant.objects.get(pk=context["restaurant"].pk))))), 1)
+        context["rating"] = round(avg(list(map(lambda fb: fb.mark, context["feedbacks"]))), 1)
     else:
         context["rating"] = 0
 
     return render(request, "bookings/feedback.html", context=context)
 
 
+@login_required()
 def basket(request):
     context = {
         "basket": Booking.objects.filter(user=request.user)
     }
     return render(request, "bookings/basket.html", context)
-
-
-def basket_add(request, restaurant_id):
-    restaurant = Restaurant.objects.get(id=restaurant_id)
-    user_basket = Booking.objects.filter(user=request.user, restaurant=restaurant)
-
-    if not user_basket.exists():
-        Booking.objects.craete(user=request.user, restaurant=restaurant)
-    return HttpResponseRedirect(request.META.get("HTTP_REFERER"))
-
-
-def basket_delete(request, booking_id):
-    booking1 = Booking.objects.get(id=booking_id)
-    booking1.delete()
-    return HttpResponseRedirect(request.META.get("HTTP_REFERER"))

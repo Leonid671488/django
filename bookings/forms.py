@@ -1,9 +1,9 @@
-from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, UserChangeForm
 from bookings.models import Booking, Feedback
 from django import forms
 
 class BookingForm(forms.ModelForm):
     time = forms.DateTimeField(widget=forms.DateTimeInput(attrs={
+        "type": "datetime-local",
         "class": "form-group-input"
     }))
     peoples = forms.IntegerField(widget=forms.NumberInput(attrs={

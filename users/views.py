@@ -4,6 +4,10 @@ from users.models import User
 from bookings.models import Booking, Feedback, Restaurant
 from django.contrib import auth
 from django.urls import reverse
+from django.contrib.auth.decorators import login_required
+
+from project.bookings.views import feedback
+
 
 # Create your views here.
 
@@ -52,6 +56,7 @@ def logout(request):
     return HttpResponseRedirect(reverse('index'))
 
 
+@login_required()
 def personal_account(request):
     avg = lambda lst: sum(lst) / len(lst)
     context = {
@@ -59,17 +64,20 @@ def personal_account(request):
         "restaurants": []
     }
 
-    # restaurants = list(map(lambda bk: bk.restaurant, Booking.objects.filter(user=User.objects.get(email="burmalda67@gmail.com"))))
-    # for restaurant in restaurants:
-    #     feedbacks = list(map(lambda fb: fb.mark, Feedback.objects.filter(booking__restaurant=Restaurant.objects.get(pk=restaurant.pk))))
-    #     if feedbacks:
-    #         context["restaurants"].append((restaurant, round(avg(feedbacks), 1)))
-    #     else:
-    #         context["restaurants"].append((restaurant, 0))
+    bookings = Booking.objects.filter(user=request.user)
+    for booking in bookings:
+        restaurant = booking.restaurant
+        feedbacks = Feedback.objects.filter(booking=booking)
+        if feedbacks:
+            rating = round(avg(list(map(lambda fb: fb.mark, feedbacks))), 1)
+        else:
+            rating = 0
+        context["restaurants"].append([restaurant, rating])
 
     return render(request, "users/personal_account.html", context=context)
 
 
+@login_required()
 def change_profile(request):
     if request.method == "POST":
         form = UserProfileForm(data=request.POST ,instance=request.user, files=request.FILES)

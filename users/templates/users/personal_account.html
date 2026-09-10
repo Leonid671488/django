@@ -36,7 +36,7 @@
             {% if restaurants %}
                 <div class="restaurants-grid">
                     {% for restaurant, rating in restaurants %}
-                        <a href="{% url 'restaurants:feedback' %}" style="text-decoration: none;">
+                        <a href="{% url 'restaurants:feedback' restaurant.id %}" style="text-decoration: none;">
                             <article class="restaurant-card">
                                 <div class="restaurant-img-wrapper">
                                     <img src="/media/{{ restaurant.image }}" alt="Ресторан" class="restaurant-img">

@@ -32,7 +32,7 @@
             <h2>Оставить отзыв</h2>
             <p class="form-subtitle">Поделитесь вашим мнением о нашем сервисе</p>
 
-            <form>
+            <form action="{% url 'restaurants:feedback' restaurant.id %}" method="POST">
                 <!-- Блок оценки звёздами -->
                 <div class="form-group">
                     <label>Ваша оценка</label>
