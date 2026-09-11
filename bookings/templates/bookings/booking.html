@@ -61,13 +61,13 @@
                 <div class="card-header">
                     <!-- Блок с аватаркой и именем -->
                     <div class="user-info">
-                        {% if feedback.booking.user.image %}
-                            <img src="/media/{{ feedback.booking.user.image }}" alt="{{ feedback.booking.user.name }}" class="user-avatar">
+                        {% if feedback.user.image %}
+                            <img src="/media/{{ feedback.user.image }}" alt="{{ feedback.user.name }}" class="user-avatar">
                         {% else %}
                             <!-- Заглушка, если аватарки нет -->
-                            <div class="user-avatar-placeholder">{{ feedback.booking.user.username|default:"Г"|slice:":1" }}</div>
+                            <div class="user-avatar-placeholder">{{ feedback.user.username|default:"Г"|slice:":1" }}</div>
                         {% endif %}
-                        <span class="guest-name">{{ feedback.booking.user.username|default:"Гость" }}</span>
+                        <span class="guest-name">{{ feedback.user.username|default:"Гость" }}</span>
                     </div>
                 </div>
 

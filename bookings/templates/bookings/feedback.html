@@ -3,7 +3,7 @@
 
 {% block css %}
     <!-- Подключение файла стилей -->
-    <link rel="stylesheet" href="{% static 'css/feedback.css' %}">
+    <link rel="stylesheet" href="{% static 'css/feedback1.css' %}">
 {% endblock %}
 
 {% block content %}
@@ -33,22 +33,17 @@
             <p class="form-subtitle">Поделитесь вашим мнением о нашем сервисе</p>
 
             <form action="{% url 'restaurants:feedback' restaurant.id %}" method="POST">
+                {% csrf_token %}
                 <!-- Блок оценки звёздами -->
                 <div class="form-group">
-                    <label>Ваша оценка</label>
-                    <div class="rating-stars">
-                        <input type="radio" id="star5" name="rating" value="5" /><label for="star5" title="Отлично">★</label>
-                        <input type="radio" id="star4" name="rating" value="4" /><label for="star4" title="Хорошо">★</label>
-                        <input type="radio" id="star3" name="rating" value="3" /><label for="star3" title="Нормально">★</label>
-                        <input type="radio" id="star2" name="rating" value="2" /><label for="star2" title="Плохо">★</label>
-                        <input type="radio" id="star1" name="rating" value="1" /><label for="star1" title="Ужасно">★</label>
-                    </div>
+                    <label for="{{ form.mark.id_for_label }}">Ваша оценка</label>
+                    {{ form.mark }}
                 </div>
 
                 <!-- Блок отзыва -->
                 <div class="form-group">
-                    <label for="review-comment">Ваш отзыв</label>
-                    <textarea id="review-comment" rows="5" placeholder="Напишите, что вам понравилось или что стоит улучшить..."></textarea>
+                    <label for="{{ form.text.id_for_label }}">Ваш отзыв</label>
+                    {{ form.text }}
                 </div>
 
                 <button type="submit" class="btn-submit">Отправить отзыв</button>
@@ -63,13 +58,13 @@
                 <div class="card-header">
                     <!-- Блок с аватаркой и именем -->
                     <div class="user-info">
-                        {% if feedback.booking.user.image %}
-                            <img src="/media/{{ feedback.booking.user.image }}" alt="{{ feedback.booking.user.name }}" class="user-avatar">
+                        {% if feedback.user.image %}
+                            <img src="/media/{{ feedback.user.image }}" alt="{{ feedback.user.name }}" class="user-avatar">
                         {% else %}
                             <!-- Заглушка, если аватарки нет -->
-                            <div class="user-avatar-placeholder">{{ feedback.booking.user.username|default:"Г"|slice:":1" }}</div>
+                            <div class="user-avatar-placeholder">{{ feedback.user.username|default:"Г"|slice:":1" }}</div>
                         {% endif %}
-                        <span class="guest-name">{{ feedback.booking.user.username|default:"Гость" }}</span>
+                        <span class="guest-name">{{ feedback.user.username|default:"Гость" }}</span>
                     </div>
                 </div>
 

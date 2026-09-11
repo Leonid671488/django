@@ -6,8 +6,6 @@ from django.contrib import auth
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 
-from project.bookings.views import feedback
-
 
 # Create your views here.
 
@@ -67,7 +65,7 @@ def personal_account(request):
     bookings = Booking.objects.filter(user=request.user)
     for booking in bookings:
         restaurant = booking.restaurant
-        feedbacks = Feedback.objects.filter(booking=booking)
+        feedbacks = Feedback.objects.filter(restaurant=restaurant)
         if feedbacks:
             rating = round(avg(list(map(lambda fb: fb.mark, feedbacks))), 1)
         else:

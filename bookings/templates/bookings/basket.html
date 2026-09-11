@@ -3,7 +3,7 @@
 
 {% block css %}
     <!-- Подключение файла стилей -->
-    <link rel="stylesheet" href="{% static 'css/basket1.css' %}">
+    <link rel="stylesheet" href="{% static 'css/basket.css' %}">
 {% endblock %}
 
 {% block content %}
@@ -14,17 +14,18 @@
             {% if basket %}
                 <div class="restaurants-grid">
                     {% for booking in basket %}
-                        <a href="{% url 'restaurants:feedback' %}" style="text-decoration: none;">
-                            <article class="restaurant-card">
-                                <div class="restaurant-img-wrapper">
-                                    <img src="/media/{{ booking.restaurant.image }}" alt="Ресторан" class="restaurant-img">
-                                    <span class="restaurant-badge">{{ booking.restaurant.category.name }}</span>
-                                </div>
-                                <div class="restaurant-content">
-                                    <p class="restaurant-address">Заказ на {{ booking.time }}</p>
-                                </div>
-                            </article>
-                        </a>
+                        <article class="restaurant-card">
+                            <div class="restaurant-img-wrapper">
+                                <img src="/media/{{ booking.restaurant.image }}" alt="Ресторан" class="restaurant-img">
+                                <span class="restaurant-badge">{{ booking.restaurant.category.name }}</span>
+                            </div>
+                            <div class="restaurant-content">
+                                <p class="restaurant-address">Заказ на {{ booking.time }}</p>
+                            </div>
+                            <a href="{% url 'restaurants:basket_delete' booking.restaurant.id%}" style="text-decoration: none;">
+                                <button type="submit" class="btn-submit">Отменить бронирование</button>
+                            </a>
+                        </article>
                     {% endfor %}
                 </div>
             {% else %}

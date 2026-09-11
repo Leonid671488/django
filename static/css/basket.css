@@ -148,3 +148,27 @@ main {
     text-transform: uppercase;
     letter-spacing: 0.5px;
 }
+
+.btn-submit {
+    width: 100%;
+    padding: 14px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #ffffff;
+    background-color: #e65100;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    margin-top: 10px;
+}
+
+.btn-submit:hover {
+    background-color: #bf4300;
+}
+
+.btn-submit:active {
+    transform: scale(0.98);
+}

@@ -40,7 +40,8 @@ class Booking(models.Model):
 class Feedback(models.Model):
     mark = models.PositiveSmallIntegerField()
     text = models.TextField(blank=True)
-    booking = models.ForeignKey(Booking, on_delete=models.CASCADE)
+    restaurant = models.ForeignKey(Restaurant, null=True, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, null=True, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f"{self.booking.user.username} | {self.mark}"
+        return f"{self.user.username} | {self.mark}"
