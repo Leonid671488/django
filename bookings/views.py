@@ -3,6 +3,7 @@ from bookings.models import Restaurant, RestaurantCategory, Booking, Feedback
 from bookings.forms import BookingForm, FeedbackForm
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
+from django.core.paginator import Paginator
 
 
 # Create your views here.
@@ -16,7 +17,7 @@ def index(request):
     return render(request, "bookings/index.html", context=context)
 
 
-def catalog(request):
+def catalog(request, page_number=1, category_id=None):
     avg = lambda lst: sum(lst) / len(lst)
     context = {
         "title": "Сеть моно-ресторанов | Выбор ресторана",
@@ -24,12 +25,22 @@ def catalog(request):
         "categories": RestaurantCategory.objects.all()
     }
 
-    for restaurant in Restaurant.objects.all():
-        feedbacks = list(map(lambda fb: fb.mark, Feedback.objects.filter(restaurant=Restaurant.objects.get(pk=restaurant.pk))))
+    if category_id:
+        restaurants = Restaurant.objects.filter(category__id=category_id)
+    else:
+        restaurants = Restaurant.objects.all()
+
+    for restaurant in restaurants:
+        feedbacks = list(
+            map(lambda fb: fb.mark, Feedback.objects.filter(restaurant=Restaurant.objects.get(pk=restaurant.pk))))
         if feedbacks:
             context["restaurants"].append((restaurant, round(avg(feedbacks), 1)))
         else:
             context["restaurants"].append((restaurant, 0))
+
+    pagination = Paginator(context["restaurants"], 3)
+
+    context["restaurants"] = pagination.page(page_number)
 
     return render(request, "bookings/catalog.html", context=context)
 

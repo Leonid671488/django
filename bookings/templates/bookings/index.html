@@ -22,7 +22,7 @@
 
             <div class="menu-grid">
                 {% for category in categories %}
-                    <a href="restaurants/#{{ category.name }}" class="menu-card">
+                    <a href="{% url 'restaurants:catalog' category.id %}" class="menu-card">
                         <div class="card-img">
                             <img src="/media/{{ category.image }}" class="category_img">
                         </div>

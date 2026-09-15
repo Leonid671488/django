@@ -5,6 +5,8 @@ app_name = "restaurants"
 
 urlpatterns = [
     path('', catalog, name='index'),
+    path('<int:category_id>', catalog, name='catalog'),
+    path('page/<int:page_number>', catalog, name='page'),
     path('booking/<int:restaurant_id>', booking, name='booking'),
     path('feedback/<int:restaurant_id>', feedback, name='feedback'),
     path('basket/', basket, name='basket'),

@@ -234,3 +234,49 @@ section[id$="-section"] {
     text-transform: uppercase;
     letter-spacing: 0.5px;
 }
+
+/* Пагинация */
+nav {
+    margin: 40px 0;
+    display: flex;
+    justify-content: center;
+}
+
+nav ul {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    gap: 8px;
+    background-color: #ffffff;
+    padding: 8px 16px;
+    border-radius: 30px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+nav ul li a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 40px;
+    height: 40px;
+    padding: 0 14px;
+    text-decoration: none;
+    color: #555;
+    font-weight: 500;
+    font-size: 15px;
+    border-radius: 20px;
+    transition: all 0.2s ease;
+}
+
+/* Эффект наведения на доступные ссылки */
+nav ul li.on a:hover {
+    background-color: #fff3e0;
+    color: #e65100;
+}
+
+/* Стили для отключенных кнопок (Назад/Вперед на первой/последней странице) */
+nav ul li.off a {
+    color: #ccc;
+    cursor: not-allowed;
+    background-color: transparent;
+}

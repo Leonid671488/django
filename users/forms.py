@@ -26,7 +26,7 @@ class UserRegisterForm(UserCreationForm):
         "class": "form-group-input",
         "placeholder": "example@mail.com"
     }))
-    image = forms.ImageField(widget=forms.FileInput(attrs={
+    image = forms.ImageField(required=False, widget=forms.FileInput(attrs={
         "class": "form-group-input"
     }))
     password1 = forms.CharField(widget=forms.PasswordInput(attrs={

@@ -34,7 +34,7 @@
             <h2>Регистрация</h2>
             <p class="form-subtitle">Создайте аккаунт, чтобы получить доступ ко всем возможностям</p>
 
-            <form action="{% url 'users:register' %}" method="post">
+            <form action="{% url 'users:register' %}" method="post" enctype="multipart/form-data">
                 {% csrf_token %}
                 <div class="form-group">
                     <label for="{{ form.username.id_for_label }}">Имя пользователя</label>
