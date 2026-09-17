@@ -4,4 +4,10 @@ from django.contrib import admin
 
 from users.models import *
 
-admin.site.register(User)
+from bookings.admin import BasketAdmin
+
+# admin.site.register(User)
+
+@admin.register(User)
+class UserAdmin(admin.ModelAdmin):
+    inlines = (BasketAdmin, )

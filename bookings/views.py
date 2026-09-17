@@ -17,12 +17,13 @@ def index(request):
     return render(request, "bookings/index.html", context=context)
 
 
-def catalog(request, page_number=1, category_id=None):
+def catalog(request, category_id=None, page_number=1):
     avg = lambda lst: sum(lst) / len(lst)
     context = {
         "title": "Сеть моно-ресторанов | Выбор ресторана",
         "restaurants": [],
-        "categories": RestaurantCategory.objects.all()
+        "categories": RestaurantCategory.objects.all(),
+        "category_id": category_id
     }
 
     if category_id:

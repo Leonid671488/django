@@ -55,13 +55,38 @@
         <nav>
             <ul>
                 <li class="{% if not restaurants.has_previous %} off {% else %} on {% endif %}">
-                    <a href="{% if restaurants.has_previous %} {% url 'restaurants:page' restaurants.previous_page_number %} {% else %} # {% endif %}">Назад</a>
+                    <a href="
+                    {% if restaurants.has_previous %}
+                        {% if category_id %}
+                            {% url 'restaurants:category_page' category_id restaurants.previous_page_number %}
+                        {% else %}
+                            {% url 'restaurants:page' restaurants.previous_page_number %}
+                        {% endif %}
+                    {% else %}
+                        #
+                    {% endif %}">Назад</a>
                 </li>
                 {% for page in restaurants.paginator.page_range %}
-                    <li class="on"><a href="{% url 'restaurants:page' page %}">{{ page }}</a></li>
+                    <li class="on">
+                        <a href="
+                        {% if category_id %}
+                            {% url 'restaurants:category_page' category_id page %}
+                        {% else %}
+                            {% url 'restaurants:page' page %}
+                        {% endif %}">{{ page }}</a>
+                    </li>
                 {% endfor %}
                 <li class="{% if not restaurants.has_next %} off {% else %} on {% endif %}">
-                    <a href="{% if restaurants.has_next %} {% url 'restaurants:page' restaurants.next_page_number %} {% else %} # {% endif %}">Вперед</a>
+                    <a href="
+                    {% if restaurants.has_next %}
+                        {% if category_id %}
+                            {% url 'restaurants:category_page' category_id restaurants.next_page_number %}
+                        {% else %}
+                            {% url 'restaurants:page' restaurants.next_page_number %}
+                        {% endif %}
+                    {% else %}
+                        #
+                    {% endif %}">Вперёд</a>
                 </li>
             </ul>
         </nav>
