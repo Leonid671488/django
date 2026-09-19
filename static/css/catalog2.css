@@ -236,13 +236,13 @@ section[id$="-section"] {
 }
 
 /* Пагинация */
-nav {
+.pagination {
     margin: 40px 0;
     display: flex;
     justify-content: center;
 }
 
-nav ul {
+.pagination ul {
     display: flex;
     align-items: center;
     list-style: none;
@@ -253,7 +253,7 @@ nav ul {
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
 }
 
-nav ul li a {
+.pagination ul li a {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -269,14 +269,32 @@ nav ul li a {
 }
 
 /* Эффект наведения на доступные ссылки */
-nav ul li.on a:hover {
+.pagination ul li.on a:hover {
     background-color: #fff3e0;
     color: #e65100;
 }
 
 /* Стили для отключенных кнопок (Назад/Вперед на первой/последней странице) */
-nav ul li.off a {
+.pagination ul li.off a {
     color: #ccc;
     cursor: not-allowed;
     background-color: transparent;
+}
+
+/* Главное навигационное меню */
+.nav-menu {
+    display: flex;
+    gap: 25px;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: #555;
+    font-weight: 500;
+    font-size: 15px;
+    transition: color 0.2s ease;
+}
+
+.nav-link:hover {
+    color: #e65100;
 }
