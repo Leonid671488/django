@@ -84,9 +84,10 @@ def feedback(request, restaurant_id):
             feedback_instance = form.save(commit=False)
             feedback_instance.restaurant = Restaurant.objects.get(id=restaurant_id)
             feedback_instance.user = request.user
-            feedback_instance.save()
+            if not Feedback.objects.filter(restaurant=feedback_instance.restaurant, user=request.user):
+                feedback_instance.save()
 
-            return HttpResponseRedirect(reverse('users:personal_account'))
+                return HttpResponseRedirect(reverse('users:personal_account'))
     else:
         form = FeedbackForm()
 
